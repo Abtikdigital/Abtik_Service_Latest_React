@@ -1,4 +1,4 @@
-import Map from "./Map.jsx"
+
 import Chart from "react-google-charts";
 const Contact = () => {
   const data = [
@@ -78,7 +78,7 @@ const Contact = () => {
         </div>
         <div className="md:col-span-3 bg-gradient-to-r from-[#3CA2E2]  to-[#052EAA] rounded-lg grid grid-cols-2 grid-rows-1">
           <div className="relative">
-            <Map/>
+          
           </div>
           <div className="p-6 ">
             <div className="bg-[#F7F7F7] rounded-3xl p-4">
