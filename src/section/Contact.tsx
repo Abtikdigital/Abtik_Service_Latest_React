@@ -1,4 +1,3 @@
-
 import Chart from "react-google-charts";
 const Contact = () => {
   const data = [
@@ -40,7 +39,7 @@ const Contact = () => {
 
   return (
     <section className="px-14 py-6 bg-[#f7f7f7]">
-      <div className="grid grid-cols-4 grid-rows-1 space-x-6">
+      <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-4 md:grid-rows-1 space-x-6">
         <div className=" space-y-5 px-3 flex flex-col justify-center">
           <h2
             className="sub-heading to-[#052EAA] bg-gradient-to-t from-[#3CA2E2] bg-clip-text text-transparent "
@@ -76,10 +75,8 @@ const Contact = () => {
             </div>
           </form>
         </div>
-        <div className="md:col-span-3 bg-gradient-to-r from-[#3CA2E2]  to-[#052EAA] rounded-lg grid grid-cols-2 grid-rows-1">
-          <div className="relative">
-          
-          </div>
+        <div className="md:col-span-3 bg-gradient-to-r from-[#3CA2E2]  to-[#052EAA] rounded-lg grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1">
+          <div className="relative"></div>
           <div className="p-6 ">
             <div className="bg-[#F7F7F7] rounded-3xl p-4">
               <Chart

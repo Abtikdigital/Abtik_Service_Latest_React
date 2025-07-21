@@ -3,6 +3,10 @@ import ClientStats from "../section/ClientStats";
 import Contact from "../section/Contact";
 import FaqSection from "../section/FaqSection";
 import Mainlayout from "../section/Mainlayout";
+import OurService from "../section/OurService";
+import NewBlog from "../section/NewBlog"
+import Testimonial from "../section/Testimonial";
+import Recommended from "../section/Recommended";
 
 const Home = () => {
   return (
@@ -30,6 +34,14 @@ const Home = () => {
         </section>
         {/* Client Stats */}
         <ClientStats />
+        {/* Testimonial */}
+        <Testimonial/>
+{/* Recommended Service */}
+<Recommended/>
+        {/* Our Service Section */}
+        <OurService/>
+        {/* New Blog */}
+        <NewBlog/>
         {/* Faq Section */}
         <FaqSection />
         {/* Contact Section */}

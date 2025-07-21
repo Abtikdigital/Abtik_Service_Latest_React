@@ -75,7 +75,9 @@ const FaqSection = () => {
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="p-4">{data.answer}</p>
+              <p className="p-4 bg-gradient-to-t rounded-b-lg from-[#052EAA] to-[#3CA2E2] text-white">
+                {data.answer}
+              </p>
             </div>
           </div>
         ))}
