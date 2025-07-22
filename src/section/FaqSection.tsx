@@ -9,24 +9,24 @@ const FaqSection = () => {
 
   const faq = [
     {
-      question: "What is Abtik Services?",
+      question: "1. What is Abtik?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec sagittis ligula, eget sollicitudin lacus. Proin at varius nisi, et maximus justo. Curabitur ac aliquam dolor, sit amet maximus purus.",
+        "Abtik is a business support firm that helps startups and MSMEs with registration, funding, licensing, and certifications—everything needed to grow.",
     },
     {
-      question: "How does the process work?",
+      question: "2. Who is Abtik for?",
       answer:
-        "Once you contact us, our team will assess your needs, propose a solution, and begin working after your approval.",
+        "Entrepreneurs, startups, MSMEs, professionals, and anyone looking to start or scale a business.",
     },
     {
-      question: "Which technologies do you use?",
+      question: "3. What makes Abtik different?",
       answer:
-        "We use React, Node.js, Tailwind CSS, Next.js, WordPress, Shopify, and many more modern tech stacks.",
+        "Expert guidance, quick support, and complete business solutions—all under one roof.",
     },
     {
-      question: "Do you offer support after project completion?",
+      question: "4. Why choose Abtik?",
       answer:
-        "Yes, we offer maintenance and support packages for post-launch improvements and assistance.",
+        "Because we simplify the complex—offering expert guidance and complete business solutions in one place.",
     },
   ];
 

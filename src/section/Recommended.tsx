@@ -2,52 +2,52 @@ import Image1 from "../assets/Recommended/Img1.svg";
 const Recommended = () => {
   const recommendedData = [
     {
-      title: "Trademark & patents",
+      title: "Start-Up India Registration",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "A DPIIT-recognized government program that enables eligible startups to access tax exemptions, self-certification....",
     },
     {
-      title: "Trademark & patents",
+      title: "Seed Fund Scheme",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "An initiative under Startup India that provides early-stage funding through government-approved incubators. It ....",
     },
     {
-      title: "Trademark & patents",
+      title: "MSME Loan",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "Loans provided to Micro, Small, and Medium Enterprises under various central and state government schemes. These....",
     },
     {
-      title: "Trademark & patents",
+      title: "NBFC Loan",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "Loans provided by Non-Banking Financial Companies with simplified documentation and eligibility. These are....",
     },
     {
-      title: "Trademark & patents",
+      title: "PMEGP Loan",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "A credit-linked subsidy scheme by the Government of India that supports new micro-enterprises in the manufacturing or....",
     },
     {
-      title: "Trademark & patents",
+      title: "NAIIF Loan",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "Equity-based funding made available through SEBI-registered Alternative Investment Funds (AIFs) under the National....",
     },
     {
-      title: "Trademark & patents",
+      title: "GST & Tax Compliance",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "GST registration, monthly and annual return filings, income tax filing, TDS management, and audit preparation. Ensures....",
     },
     {
-      title: "Trademark & patents",
+      title: "Tax Exemption Certificates (80-IAC, 12AB, 80G)",
       img: Image1,
       description:
-        "Protect your brand and innovations with seamless trademark registration and patent filing services....",
+        "Government-issued certificates offering tax benefits to eligible startups and NGOs. These include 80-IAC....",
     },
   ];
   return (
@@ -59,7 +59,7 @@ const Recommended = () => {
         Recommended For You
       </h2>
       <p className="paragraph text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, quaerat.
+        Top-picked services for your business goals—get exactly what you need, when you need it.
       </p>
       <div className=" gap-6 grid grid-cols-1 md:grid-cols-4">
         {recommendedData?.map((data) => (

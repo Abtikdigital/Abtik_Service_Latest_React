@@ -69,8 +69,7 @@ const OurService = () => {
         </h2>
         <p className="paragraph text-center">
           {" "}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos,
-          aut?
+          “Smart business solutions—from registration to funding, licensing & certification—all in one place.”
         </p>
         <div className="gap-6 grid grid-cols-1 md:grid-cols-4 space-y-6">
           {services.map((service: any) => (
