@@ -63,7 +63,7 @@ const Recommended = () => {
       </p>
       <div className=" gap-6 grid grid-cols-1 md:grid-cols-4">
         {recommendedData?.map((data) => (
-          <div className="bg-white p-4 shadow-lg rounded-4xl space-y-2 duration-300  transition-all hover:scale-105 cursor-pointer">
+          <div className="bg-white p-4 shadow-lg rounded-4xl space-y-3 duration-300  transition-all hover:scale-105 cursor-pointer">
             <img src={data?.img} />
             <h2 className="text-xl text-[#3CA2E2] font-semibold text-center">
               {data?.title}

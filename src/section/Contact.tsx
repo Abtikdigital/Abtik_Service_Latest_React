@@ -84,7 +84,7 @@ const Contact = () => {
                 data={data}
                 options={options}
                 width={"100%"}
-                height={"240px"}
+                height={"250px"}
               />
               <div className="flex justify-center items-center">
                 <div className="bg-white rounded-xl shadow-lg ">

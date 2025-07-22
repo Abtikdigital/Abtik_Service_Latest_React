@@ -34,7 +34,7 @@ const Testimonial: React.FC = () => {
       setCurrent(
         (prev) => (prev + 1) % testimonials.length // move forward
       );
-    }, 4000);
+    }, 3000);
 
     return () => {
       if (timer.current) clearInterval(timer.current);
@@ -66,7 +66,7 @@ const Testimonial: React.FC = () => {
       >
         Testimonials
       </h2>
-      <div className="relative w-full max-w-[95vw] sm:max-w-[400px] md:max-w-[480px] h-[280px] flex flex-col items-center justify-center mb-8 px-2 sm:px-0 overflow-visible">
+      <div className="relative w-full max-w-[95vw] sm:max-w-[350px] md:max-w-[480px] h-[280px] flex flex-col items-center justify-center mb-8 px-2 sm:px-0 overflow-visible">
         {/* Previous */}
         <Card
           testimonial={testimonials[prevIdx]}

@@ -6,7 +6,7 @@ const About = () => {
       <div className="grid md:grid-cols-2 bg-[#f7f7f7] px-7 md:px-14 py-6 gap-6 items-center">
         <div className="space-y-10">
           <h2
-            className="sub-heading  bg-clip-text bg-gradient-to-t text-transparent
+            className="sub-heading text-center md:text-left  bg-clip-text bg-gradient-to-t text-transparent
           from-[#3CA2E2]
           to-[#052EAA]
           "
@@ -14,14 +14,17 @@ const About = () => {
           >
             About Abtik
           </h2>
-          <p className="paragraph  ">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. In quidem ipsa voluptate architecto quisquam reprehenderit rem, totam, facere rerum cum harum cumque explicabo dolorum a ex? Hic officiis dolore aliquam!
+          <p className="paragraph text-center md:text-left  ">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In quidem
+            ipsa voluptate architecto quisquam reprehenderit rem, totam, facere
+            rerum cum harum cumque explicabo dolorum a ex? Hic officiis dolore
+            aliquam!
           </p>
-          <div>
+          <div className="text-center md:text-left">
             <button className="custom-btn">Explore</button>
           </div>
         </div>
-        <div className="grid grid-cols-2  gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
           <div>
             <img src={Image1} className="rounded-4xl" />
           </div>

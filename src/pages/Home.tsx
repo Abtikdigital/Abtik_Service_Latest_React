@@ -34,16 +34,16 @@ const Home = () => {
             <button className="custom-btn">Schedule a call</button>
           </div>
         </section>
-        {/* About Us Section*/}
-        <About />
         {/* Client Stats */}
         <ClientStats />
-        {/* Testimonial */}
-        <Testimonial />
-        {/* Recommended Service */}
-        <Recommended />
+        {/* About Us Section*/}
+        <About />
         {/* Our Service Section */}
         <OurService />
+        {/* Recommended Service */}
+        <Recommended />
+        {/* Testimonial */}
+        <Testimonial />
         {/* New Blog */}
         <NewBlog />
         {/* Faq Section */}
