@@ -57,8 +57,8 @@ const NewBlog = () => {
     nav(path);
   };
   return (
-    <section className="bg-[#f7f7f7] py-6 px-14">
-      <div className="space-y-3">
+    <section className="bg-[#f7f7f7] py-7 px-14">
+      <div className="space-y-6">
         <h2
           style={{ fontFamily: "Anton" }}
           className="sub-heading  text-center bg-gradient-to-t from-[#3CA2E2] to-[#052EAA] bg-clip-text text-transparent"
@@ -73,7 +73,7 @@ const NewBlog = () => {
           {blogData?.map((blog: any) => (
             <div className="space-y-4">
               <img src={blog?.img} className="w-full" />
-              <h2 className="text-center">{blog?.title}</h2>
+              <h2 className="text-center text-xl text-[#3CA2E2] font-semibold ">{blog?.title}</h2>
               <p className="text-center paragraph">{blog?.description}</p>
               <div className="text-center">
                 <button

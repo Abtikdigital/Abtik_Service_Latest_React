@@ -4,7 +4,7 @@ import Contact from "../section/Contact";
 import FaqSection from "../section/FaqSection";
 import Mainlayout from "../section/Mainlayout";
 import OurService from "../section/OurService";
-import NewBlog from "../section/NewBlog"
+import NewBlog from "../section/NewBlog";
 import Testimonial from "../section/Testimonial";
 import Recommended from "../section/Recommended";
 
@@ -14,9 +14,9 @@ const Home = () => {
       <Mainlayout>
         {/* Hero Section */}
         <section
-          className="flex justify-center items-center h-[70vh]  md:justify-end md:items-center md:h-screen bg-center bg-cover px-14"
+          className="flex justify-center items-center h-[70vh]  md:justify-end md:items-center md:h-screen bg-center bg-cover px-7 md:px-14"
           style={{
-            backgroundImage: `url(${BgImage})`,
+            backgroundImage: `url(${BgImage})`,      
           }}
         >
           <div className="md:w-1/2 space-y-6 ">
@@ -35,13 +35,13 @@ const Home = () => {
         {/* Client Stats */}
         <ClientStats />
         {/* Testimonial */}
-        <Testimonial/>
-{/* Recommended Service */}
-<Recommended/>
+        <Testimonial />
+        {/* Recommended Service */}
+        <Recommended />
         {/* Our Service Section */}
-        <OurService/>
+        <OurService />
         {/* New Blog */}
-        <NewBlog/>
+        <NewBlog />
         {/* Faq Section */}
         <FaqSection />
         {/* Contact Section */}

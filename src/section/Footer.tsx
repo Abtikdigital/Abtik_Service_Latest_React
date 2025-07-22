@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <section className="grid  grid-cols-1 lg:grid-cols-4 space-y-5  px-14 py-10 bg-[#F7F7F7]">
+      <section className="grid  grid-cols-1 lg:grid-cols-4 space-y-5 px-7 md:px-14 py-10 bg-[#F7F7F7]">
         <div className="space-y-5">
           <div>
             <img src={Logo} className="h-14" />

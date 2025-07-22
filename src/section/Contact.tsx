@@ -38,11 +38,11 @@ const Contact = () => {
   };
 
   return (
-    <section className="px-14 py-6 bg-[#f7f7f7]">
-      <div className="grid grid-cols-1 grid-rows-2 md:grid-cols-4 md:grid-rows-1 space-x-6">
-        <div className=" space-y-5 px-3 flex flex-col justify-center">
+    <section className="px-7 md:px-14 py-6 bg-[#f7f7f7]">
+      <div className="grid grid-cols-1  gap-6 md:grid-cols-4 md:grid-rows-1 space-x-6">
+        <div className=" space-y-5 md:px-3 flex flex-col justify-center">
           <h2
-            className="sub-heading to-[#052EAA] bg-gradient-to-t from-[#3CA2E2] bg-clip-text text-transparent "
+            className="sub-heading to-[#052EAA] text-center bg-gradient-to-t from-[#3CA2E2] bg-clip-text text-transparent "
             style={{
               fontFamily: "Anton",
             }}

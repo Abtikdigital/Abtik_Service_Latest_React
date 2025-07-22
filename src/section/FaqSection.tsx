@@ -39,8 +39,8 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="bg-[#f7f7f7] py-16">
-      <h1 className="main-heading !text-[#052EAA] text-center mb-8">
+    <section className="bg-[#f7f7f7] py-16 space-y-6">
+      <h1 className="sub-heading bg-gradient-to-t text-center  bg-clip-text from-[#3CA2E2] to-[#052EAA] text-transparent">
         Frequently Asked Questions
       </h1>
 

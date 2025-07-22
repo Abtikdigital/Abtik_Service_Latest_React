@@ -57,7 +57,7 @@ const OurService = () => {
   };
 
   return (
-    <section className="flex justify-center items-center bg-[#f7f7f7] px-8 md:px-14 py-6">
+    <section className="flex justify-center items-center bg-[#f7f7f7] px-7 md:px-14 py-6">
       <div className="w-full space-y-6">
         <h2
           className="sub-heading text-center bg-clip-text bg-gradient-to-b from-[#052EAA] to-[#3CA2E2] text-transparent"
@@ -76,7 +76,7 @@ const OurService = () => {
           {services.map((service: any) => (
             <div className="space-y-4">
               <img src={service.img} className="w-full" />
-              <h2 className="text-center ">{service?.title}</h2>
+              <h2 className="text-center text-xl text-[#3CA2E2] font-semibold  ">{service?.title}</h2>
               <p className="text-center paragraph">{service?.description}</p>
               <div className="text-center">
                 <button
