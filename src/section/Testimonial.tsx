@@ -59,7 +59,7 @@ const Testimonial: React.FC = () => {
   const nextIdx = getIndex(1);
 
   return (
-    <section className="flex flex-col items-center py-12 bg-[#f7f7f7] min-h-[400px] w-full">
+    <section className="flex flex-col items-center py-12 space-y-6 bg-[#f7f7f7] min-h-[400px] w-full">
       <h2
         className="sub-heading bg-clip-text text-transparent  bg-gradient-to-t from-[#3CA2E2] to-[#052EAA]"
         style={{ fontFamily: "Anton" }}

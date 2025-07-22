@@ -7,6 +7,7 @@ import OurService from "../section/OurService";
 import NewBlog from "../section/NewBlog";
 import Testimonial from "../section/Testimonial";
 import Recommended from "../section/Recommended";
+import About from "../section/About";
 
 const Home = () => {
   return (
@@ -16,13 +17,14 @@ const Home = () => {
         <section
           className="flex justify-center items-center h-[70vh]  md:justify-end md:items-center md:h-screen bg-center bg-cover px-7 md:px-14"
           style={{
-            backgroundImage: `url(${BgImage})`,      
+            backgroundImage: `url(${BgImage})`,
           }}
         >
           <div className="md:w-1/2 space-y-6 ">
             <h1 className="main-heading ">
-              Your One-Stop <span className="text-[#3CA2E2]">Solution</span> for
-              all Business Needs
+              Your One-Stop{" "}
+              <span className="text-[#3CA2E2] font-extrabold">Solution</span>{" "}
+              for all Business Needs
             </h1>
             <p className="paragraph !text-white">
               Empowering Businesses through Comprehensive Solutions From Fund
@@ -32,6 +34,8 @@ const Home = () => {
             <button className="custom-btn">Schedule a call</button>
           </div>
         </section>
+        {/* About Us Section*/}
+        <About />
         {/* Client Stats */}
         <ClientStats />
         {/* Testimonial */}

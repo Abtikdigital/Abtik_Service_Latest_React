@@ -14,5 +14,5 @@
   @apply text-[0.95rem] font-semibold 
 }
 .paragraph{
-  @apply text-sm text-[#4D4D4D] font-normal
+  @apply text-sm text-[#838383] font-normal
 }

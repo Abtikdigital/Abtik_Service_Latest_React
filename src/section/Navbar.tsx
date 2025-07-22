@@ -109,9 +109,9 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Navbar */}
-      <div className="hidden md:flex justify-between  sticky top-0 z-50 bg-white px-14 items-center py-2.5  shadow-xl ">
+      <div className="hidden md:flex justify-between  sticky top-0 z-50 bg-white px-14 items-center py-3  shadow-xl ">
         <div className="">
-          <img src={Logo} className=" h-14 " />
+          <img src={Logo} className=" h-12 " />
         </div>
         <ul
           className="flex h-full justify-around items-center gap-5   "
