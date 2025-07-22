@@ -51,7 +51,7 @@ const Footer = () => {
             <li className="flex gap-3 items-center">
               <MapPin className="hover:from-[#2178B5] hover:scale-105 text-white min-h-8 min-w-8 hover:to-[#021E6B] cursor-pointer bg-gradient-to-tr from-[#3CA2E2] to-[#052EAA] p-1.5 rounded-lg" />
               <a className="text-sm text-[#4D4D4D] font-semibold hover:underline hover:text-gray-950 cursor-pointer duration-300">
-                +91 1234 5678 90
+                +91 89281 38434
               </a>
             </li>
             <li className="flex gap-3 items-center">
@@ -63,7 +63,7 @@ const Footer = () => {
             <li className="flex gap-3 items-center ">
               <Phone className="hover:from-[#2178B5] text-white min-h-8 min-w-8 hover:scale-105 hover:to-[#021E6B] cursor-pointer bg-gradient-to-tr from-[#3CA2E2] to-[#052EAA] p-1.5 rounded-lg" />
               <a className="text-sm font-semibold text-[#4D4D4D] hover:underline hover:text-gray-950 cursor-pointer duration-300">
-                313, Patel Ave., S.G Highway,Thaltej, Ahmedabad,Gujarat 380054
+              313, Patel Ave, Sarkhej - Gandhinagar Hwy, Thaltej, Ahmedabad, Gujarat 380054
               </a>
             </li>
           </ul>

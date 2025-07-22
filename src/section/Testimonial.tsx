@@ -8,19 +8,34 @@ interface TestimonialType {
 
 const testimonials: TestimonialType[] = [
   {
-    name: "David Lee",
-    company: "EdgeWare Inc",
-    text: "Working with this platform has transformed how we manage data and collaborate across departments.",
+    name: "alan john",
+    company: "",
+    text: "Great team! They did an excellent job helping us set up the company, handle the startup registration, and navigate the entire process smoothly. Big thanks to Vaishali for the prompt support and clear communication throughout. Highly recommend!",
   },
   {
-    name: "Alice Smith",
-    company: "Tech Solutions",
-    text: "Amazing experience, very smooth workflow and excellent support.",
+    name: "Aruma Kushwaha",
+    company: "AYUVEDA GLOW",
+    text: "On behalf of AYUVEDA GLOW, I had a great experience working with Mr. Kevin Chotia and his team. Their professionalism, dedication, and attention to detail made the entire process smooth and successful. Thank you, Kevin and team, for your excellent support!",
   },
   {
-    name: "Bob Johnson",
-    company: "NextGen Corp",
-    text: "The best platform I've worked on, truly efficient and scalable.",
+    name: "Arun Sapre",
+    company: "Shri Sai Advance Imaging and Diagnostic Centre",
+    text: "ABTIK Services made our seed funding process smooth and stress-free. Special thanks to Anand, Jyoti, and Khusi for their prompt support and professionalism. Highly recommended for startups! Thank you, Team ABTIK!",
+  },
+  {
+    name: "Kingzee Chhachhi",
+    company: "",
+    text: "Thank you whole team for your appreciable efforts towards helping and guiding me in Startup program by Indian Government. Special thanks to Dhruvesh Patel for your personal efforts to accomplish.🙏🏻❤️",
+  },
+  {
+    name: "Manju Choudhary",
+    company: "Femaura Crafts",
+    text: "Abtik group of company is one destination for all kind of registration & scheme kind of solution. They worked aggressively and on time responsive, explain each n everything point to point. Special thanks to Vidit and staff.",
+  },
+  {
+    name: "Kuro Valmiki",
+    company: "",
+    text: "I live in Pune. I spoke to Shashikant Gaikwad. He gave me a better service than I had expected. His team did a great job. Thanks to Abtik Group of Companies for that.",
   },
 ];
 
@@ -91,9 +106,8 @@ const Testimonial: React.FC = () => {
         {testimonials.map((_, idx) => (
           <button
             key={idx}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              idx === current ? "bg-blue-700 scale-125 shadow" : "bg-blue-300"
-            }`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === current ? "bg-blue-700 scale-125 shadow" : "bg-blue-300"
+              }`}
             onClick={() => handleDotClick(idx)}
             aria-label={`Go to testimonial ${idx + 1}`}
             type="button"
@@ -139,7 +153,11 @@ const Card: React.FC<CardProps> = ({ testimonial, position }) => {
       style={{ zIndex, transform: transformStyle }}
     >
       <div className="flex items-center space-x-4 mb-4 md:mb-6">
-        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-300"></div>
+        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full uppercase bg-gray-300 flex justify-center items-center">{
+          testimonial?.name.split(" ")[0].charAt(0) +
+
+          testimonial?.name.split(" ")[1].charAt(0)
+        }</div>
         <div>
           <p className="font-semibold text-base md:text-lg">
             {testimonial.name}
