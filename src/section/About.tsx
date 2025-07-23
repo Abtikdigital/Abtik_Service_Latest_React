@@ -15,12 +15,14 @@ const About = () => {
             About Abtik
           </h2>
           <p className="paragraph  ">
-           Abtik Group of Companies is a trusted consultancy dedicated to empowering startups, MSMEs, and professionals across India. We provide end-to-end business support—from registrations, government funding assistance, and licensing to certifications, tax compliance, and documentation.
-           
-
-With a strong focus on reliability, speed, and expertise, Abtik simplifies complex processes and helps businesses launch, grow, and succeed—efficiently and confidently.
-
-Your business, our responsibility.
+            Abtik Group of Companies is a trusted consultancy dedicated to
+            empowering startups, MSMEs, and professionals across India. We
+            provide end-to-end business support—from registrations, government
+            funding assistance, and licensing to certifications, tax compliance,
+            and documentation. With a strong focus on reliability, speed, and
+            expertise, Abtik simplifies complex processes and helps businesses
+            launch, grow, and succeed—efficiently and confidently. Your
+            business, our responsibility.
           </p>
           <div className="text-center md:text-left">
             <button className="custom-btn">Explore</button>
