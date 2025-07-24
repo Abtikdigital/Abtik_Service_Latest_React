@@ -41,7 +41,20 @@ const testimonials: TestimonialType[] = [
 
 const Testimonial: React.FC = () => {
   const [current, setCurrent] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 768);
   const timer = useRef<any>(null);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
 
   // FORWARD ANIMATION
   useEffect(() => {
@@ -74,40 +87,44 @@ const Testimonial: React.FC = () => {
   const nextIdx = getIndex(1);
 
   return (
-    <section className="flex flex-col items-center py-12 space-y-6 bg-[#f7f7f7] min-h-[400px] w-full">
+    <section className="flex flex-col items-center py-6 space-y-6 bg-[#f7f7f7] min-h-[400px] w-full overflow-hidden">
       <h2
-        className="sub-heading bg-clip-text text-transparent  bg-gradient-to-t from-[#3CA2E2] to-[#052EAA]"
+        className="sub-heading bg-clip-text text-transparent bg-gradient-to-t from-[#3CA2E2] to-[#052EAA] px-4"
         style={{ fontFamily: "Anton" }}
       >
         Testimonials
       </h2>
-      <div className="relative w-full max-w-[95vw] sm:max-w-[350px] md:max-w-[480px] h-[280px] flex flex-col items-center justify-center mb-8 px-2 sm:px-0 overflow-visible">
+      <div className="relative w-full max-w-[90vw] sm:max-w-[350px] md:max-w-[480px] h-[280px] flex flex-col items-center justify-center mb-8 mx-auto overflow-hidden">
         {/* Previous */}
         <Card
           testimonial={testimonials[prevIdx]}
           position="prev"
           key={prevIdx}
+          windowWidth={windowWidth}
         />
         {/* Current */}
         <Card
           testimonial={testimonials[current]}
           position="current"
           key={current}
+          windowWidth={windowWidth}
         />
         {/* Next */}
         <Card
           testimonial={testimonials[nextIdx]}
           position="next"
           key={nextIdx}
+          windowWidth={windowWidth}
         />
       </div>
       {/* Dot navigation */}
-      <div className="flex gap-3 mt-2">
+      <div className="flex gap-3 mt-2 px-4">
         {testimonials.map((_, idx) => (
           <button
             key={idx}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === current ? "bg-blue-700 scale-125 shadow" : "bg-blue-300"
-              }`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              idx === current ? "bg-blue-700 scale-125 shadow" : "bg-blue-300"
+            }`}
             onClick={() => handleDotClick(idx)}
             aria-label={`Go to testimonial ${idx + 1}`}
             type="button"
@@ -121,12 +138,24 @@ const Testimonial: React.FC = () => {
 interface CardProps {
   testimonial: TestimonialType;
   position: "prev" | "current" | "next";
+  windowWidth: number;
 }
 
-const Card: React.FC<CardProps> = ({ testimonial, position }) => {
-  // Responsive card width
+const Card: React.FC<CardProps> = ({ testimonial, position, windowWidth }) => {
+  // Get initials safely
+  const getInitials = (name: string) => {
+    const nameParts = name.trim().split(" ");
+    if (nameParts.length >= 2) {
+      return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
+    } else if (nameParts.length === 1) {
+      return nameParts[0].charAt(0).toUpperCase() + nameParts[0].charAt(1)?.toUpperCase() || "";
+    }
+    return "AB";
+  };
+
+  // Base styles with proper containment
   let baseStyles =
-    "absolute w-[90vw] max-w-[400px] md:max-w-[480px] rounded-3xl bg-gradient-to-b from-blue-800 to-blue-500 text-white p-4 sm:p-6 md:p-8 shadow-lg transition-all duration-700 ease-in-out";
+    "absolute w-full max-w-[85vw] sm:max-w-[320px] md:max-w-[450px] rounded-3xl bg-gradient-to-b from-blue-800 to-blue-500 text-white p-4 sm:p-5 md:p-6 shadow-lg transition-all duration-700 ease-in-out box-border";
   let styles = "";
   let zIndex = 10;
   let transformStyle = "";
@@ -136,36 +165,44 @@ const Card: React.FC<CardProps> = ({ testimonial, position }) => {
     zIndex = 30;
     transformStyle = "translateY(0)";
   } else if (position === "prev") {
-    styles = "scale-75 opacity-80";
+    styles = "scale-75 opacity-70";
     zIndex = 20;
-    transformStyle =
-      window.innerWidth < 640 ? "translateY(-35px)" : "translateY(-60px)";
+    transformStyle = windowWidth < 640 ? "translateY(-35px)" : "translateY(-60px)";
   } else if (position === "next") {
-    styles = "scale-75 opacity-80";
+    styles = "scale-75 opacity-70";
     zIndex = 20;
-    transformStyle =
-      window.innerWidth < 640 ? "translateY(35px)" : "translateY(60px)";
+    transformStyle = windowWidth < 640 ? "translateY(35px)" : "translateY(60px)";
   }
 
   return (
     <div
-      className={`${baseStyles} ${styles}`}
-      style={{ zIndex, transform: transformStyle }}
+      className={`${baseStyles} ${styles} `}
+      style={{ 
+        
+        zIndex, 
+        transform: transformStyle,
+        left: '50%',
+        marginLeft: windowWidth < 640 ? '-42.5vw' : windowWidth < 768 ? '-160px' : '-225px'
+      }}
     >
-      <div className="flex items-center space-x-4 mb-4 md:mb-6">
-        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full uppercase bg-gray-300 flex justify-center items-center">{
-          testimonial?.name.split(" ")[0].charAt(0) +
-
-          testimonial?.name.split(" ")[1].charAt(0)
-        }</div>
-        <div>
-          <p className="font-semibold text-base md:text-lg">
+      <div className="flex items-center space-x-3 sm:space-x-4 mb-3 sm:mb-4 md:mb-6">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gray-300 flex justify-center items-center text-gray-800 font-semibold text-xs sm:text-sm md:text-base flex-shrink-0">
+          {getInitials(testimonial.name)}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="font-semibold text-sm sm:text-base md:text-lg capitalize truncate">
             {testimonial.name}
           </p>
-          <p className="text-xs md:text-sm opacity-80">{testimonial.company}</p>
+          {testimonial.company && (
+            <p className="text-xs md:text-sm opacity-80 truncate">
+              {testimonial.company}
+            </p>
+          )}
         </div>
       </div>
-      <p className="text-sm md:text-base text-center">{testimonial.text}</p>
+      <p className="text-xs sm:text-sm md:text-base text-center leading-relaxed">
+        {testimonial.text}
+      </p>
     </div>
   );
 };

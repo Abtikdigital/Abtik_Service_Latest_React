@@ -1,634 +1,375 @@
-import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Logo from "../assets/Logo/Blue.png";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+const menuItems = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  {
+    name: "Service",
+    path: null,
+    subItems: [
+      {
+        section: "Funding Solution",
+        items: [
+          { name: "Startup Funding", path: "/funding/startup-funding" },
+          { name: "Business Loan", path: "/funding/business-loan" },
+          { name: "Venture Capital", path: "/funding/venture-capital" },
+          { name: "Angel Investment", path: "/funding/angel-investment" },
+        ],
+      },
+      {
+        section: "Trademark & IP",
+        items: [
+          {
+            name: "Trademark Registration",
+            path: "/ip/trademark-registration",
+          },
+          { name: "Copyright Protection", path: "/ip/copyright-protection" },
+          { name: "Patent Filing", path: "/ip/patent-filing" },
+          { name: "Design Registration", path: "/ip/design-registration" },
+        ],
+      },
+      {
+        section: "Certificate & Licence",
+        items: [
+          { name: "FSSAI License", path: "/certificate/fssai-license" },
+          { name: "GST Registration", path: "/certificate/gst-registration" },
+          { name: "Import Export License", path: "/certificate/import-export" },
+          {
+            name: "Startup India Certification",
+            path: "/services/certificate/startup-india",
+          },
+        ],
+      },
+      {
+        section: "Tax & Compliance",
+        items: [
+          { name: "GST Filing", path: "/tax/gst-filing" },
+          { name: "Income Tax Filing", path: "/tax/income-tax" },
+          { name: "TDS Compliance", path: "/tax/tds-compliance" },
+          { name: "Annual Compliance", path: "/tax/annual-compliance" },
+        ],
+      },
+      {
+        section: "Business Registration",
+        items: [
+          {
+            name: "Private Limited Co.",
+            path: "/registration/private-limited",
+          },
+          { name: "LLP Registration", path: "/registration/llp" },
+          { name: "Sole Proprietorship", path: "/registration/proprietorship" },
+          { name: "Partnership Firm", path: "/registration/partnership" },
+        ],
+      },
+    ],
+  },
+  { name: "Career", path: "/career" },
+  { name: "Blog", path: "/blog" },
+  { name: "Contact", path: "/contact" },
+];
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isServiceOpen, setIsServiceOpen] = useState(false);
-  const [isCertificationOpen, setIsCertificationOpen] = useState(false);
-  const [isLoanOpen, setIsLoanOpen] = useState(false);
-  const [isFundingOpen, setIsFundingOpen] = useState(false);
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-  const { pathname } = useLocation();
-  const [currentPath, setCurrentPath] = useState(pathname);
-  const megaMenuRef = useRef(null);
-  const serviceLinkRef = useRef(null);
-  const closeTimeoutRef:any = useRef(null);
-
-  useEffect(() => {
-    setCurrentPath(pathname);
-  }, [pathname]);
-
-  // Megamenu hover handlers with delay on close
-  const clearCloseTimeout = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
+const DesktopNavbar = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const handleOpenGetInTouchForm = () => {
+    dispatch({ type: "open" });
   };
-
-  const openMegaMenu = () => {
-    clearCloseTimeout();
-    setIsMegaMenuOpen(true);
-  };
-
-  const closeMegaMenuDelayed = () => {
-    clearCloseTimeout();
-    closeTimeoutRef.current = setTimeout(() => {
-      setIsMegaMenuOpen(false);
-    }, 200);
-  };
-
-  // Mobile toggles
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleService = () => {
-    setIsServiceOpen(!isServiceOpen);
-  };
-
-  const toggleCertification = () => {
-    setIsCertificationOpen(!isCertificationOpen);
-  };
-
-  const toggleFunding = () => {
-    setIsFundingOpen(!isFundingOpen);
-  };
-
-  const toggleLoan = () => {
-    setIsLoanOpen(!isLoanOpen);
-  };
-
-  // Styling for megamenu links
-  const megaMenuLinkClass =
-    "text-base font-medium text-[#A4A4A4] hover:text-[#010574] hover:underline transition-colors duration-300 block py-1";
-
-  // Common link styles for mobile and desktop
-  const navLinkClass = (isActive:any) =>
-    `text-[#A4A4A4] hover:text-[#052EAA]   transition-all duration-300 ${
-      isActive ? "!text-[#052EAA] font-bold" : ""
-    }`;
 
   return (
-    <>
-      {/* Desktop Navbar */}
-      <div className="hidden md:flex justify-between sticky top-0 z-50 bg-white px-14 items-center py-2.5 shadow-xl">
+    <div className="hidden md:block container mx-auto px-14 py-2.5">
+      <div className="flex items-center justify-between">
+        {/* Logo */}
         <div>
-          <img src={Logo} className="h-14" alt="Logo" />
+          <img src={Logo} alt="Logo" className="h-14" />
         </div>
+
+        {/* Desktop Menu */}
         <ul
-          className="flex h-full justify-around items-center gap-5"
+          className="flex gap-8 font-medium items-center"
           style={{ fontFamily: "Montserrat Alternates" }}
         >
-          <li>
-            <Link
-              to="/"
-              className={`relative flex justify-center items-center py-2.5 group ${navLinkClass(
-                currentPath === "" || currentPath === "/"
-              )}`}
-            >
-              Home
-              <div
-                className={`absolute rounded-lg w-0 group-hover:w-full transition-all duration-300 group-hover:h-1 bottom-0 bg-[#010574] ${
-                  (currentPath === "" || currentPath === "/") && "!w-full !h-1"
+          {menuItems.map((item) => {
+            const isActive = item.path && location.pathname === item.path;
+            const isServicesPage =
+              item.name === "Service" &&
+              (location.pathname.startsWith("/services") ||
+                location.pathname.startsWith("/funding") ||
+                location.pathname.startsWith("/ip") ||
+                location.pathname.startsWith("/certificate") ||
+                location.pathname.startsWith("/tax") ||
+                location.pathname.startsWith("/registration"));
+
+            return (
+              <li
+                key={item.name}
+                className={`group py-2 ${
+                  isActive || isServicesPage
+                    ? ""
+                    : "border-transparent transition-all duration-300"
+                } transition cursor-pointer text-[#A4A4A4] hover:text-[#052EAA] ${
+                  isActive || isServicesPage ? "!text-[#052EAA] font-bold" : ""
                 }`}
-              ></div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className={`relative group py-2.5 ${navLinkClass(
-                currentPath === "/about"
-              )}`}
-            >
-              About
-              <div
-                className={`absolute rounded-lg w-0 group-hover:w-full transition-all duration-300 group-hover:h-1 bottom-0 bg-[#010574] ${
-                  currentPath === "/about" && "!w-full !h-1"
-                }`}
-              ></div>
-            </Link>
-          </li>
-          <li
-            className="relative"
-            ref={serviceLinkRef}
-            onMouseEnter={openMegaMenu}
-            onMouseLeave={closeMegaMenuDelayed}
-          >
-            <Link
-              to="/services"
-              className={`relative group py-2.5 ${navLinkClass(
-                currentPath === "/services"
-              )}`}
-            >
-              Service
-              <div
-                className={`absolute rounded-lg w-0 group-hover:w-full transition-all duration-300 group-hover:h-1 bottom-0 bg-[#010574] ${
-                  currentPath === "/services" && "!w-full !h-1"
-                }`}
-              ></div>
-            </Link>
-            {isMegaMenuOpen && (
-              <div
-                ref={megaMenuRef}
-                onMouseEnter={openMegaMenu}
-                onMouseLeave={closeMegaMenuDelayed}
-                className="fixed left-0 right-0 top-[72px] bg-white shadow-2xl border-t-4 border-[#010574] z-40"
-                style={{ fontFamily: "Montserrat Alternates" }}
               >
-                <div className="max-w-7xl mx-auto px-4 py-8">
-                  <div className="grid grid-cols-5 gap-8">
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-bold text-[#010574] border-b border-[#010574] pb-2">
-                        Funding Solution
-                      </h3>
-                      <ul className="space-y-2">
-                        <li>
-                          <Link
-                            to="/funding/startup-funding"
-                            className={megaMenuLinkClass}
-                          >
-                            Startup Funding
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/funding/business-loan"
-                            className={megaMenuLinkClass}
-                          >
-                            Business Loan
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/funding/venture-capital"
-                            className={megaMenuLinkClass}
-                          >
-                            Venture Capital
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/funding/angel-investment"
-                            className={megaMenuLinkClass}
-                          >
-                            Angel Investment
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-bold text-[#010574] border-b border-[#010574] pb-2">
-                        Trademark & IP
-                      </h3>
-                      <ul className="space-y-2">
-                        <li>
-                          <Link
-                            to="/ip/trademark-registration"
-                            className={megaMenuLinkClass}
-                          >
-                            Trademark Registration
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/ip/copyright-protection"
-                            className={megaMenuLinkClass}
-                          >
-                            Copyright Protection
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/ip/patent-filing"
-                            className={megaMenuLinkClass}
-                          >
-                            Patent Filing
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/ip/design-registration"
-                            className={megaMenuLinkClass}
-                          >
-                            Design Registration
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-bold text-[#010574] border-b border-[#010574] pb-2">
-                    
-                        Certificate & Licence
-                      </h3>
-                      <ul className="space-y-2">
-                        <li>
-                          <Link
-                            to="/certificate/fssai-license"
-                            className={megaMenuLinkClass}
-                          >
-                            FSSAI License
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/certificate/gst-registration"
-                            className={megaMenuLinkClass}
-                          >
-                            GST Registration
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/certificate/import-export"
-                            className={megaMenuLinkClass}
-                          >
-                            Import Export License
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/certificate/iso-certification"
-                            className={megaMenuLinkClass}
-                          >
-                            ISO Certification
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-bold text-[#010574] border-b border-[#010574] pb-2">
-                        Tax & Compliance
-                      </h3>
-                      <ul className="space-y-2">
-                        <li>
-                          <Link
-                            to="/tax/gst-filing"
-                            className={megaMenuLinkClass}
-                          >
-                            GST Filing
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/tax/income-tax"
-                            className={megaMenuLinkClass}
-                          >
-                            Income Tax Filing
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/tax/tds-compliance"
-                            className={megaMenuLinkClass}
-                          >
-                            TDS Compliance
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/tax/annual-compliance"
-                            className={megaMenuLinkClass}
-                          >
-                            Annual Compliance
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-bold text-[#010574] border-b border-[#010574] pb-2">
-                        Business Registration
-                      </h3>
-                      <ul className="space-y-2">
-                        <li>
-                          <Link
-                            to="/registration/private-limited"
-                            className={megaMenuLinkClass}
-                          >
-                            Private Limited Co.
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/registration/llp"
-                            className={megaMenuLinkClass}
-                          >
-                            LLP Registration
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/registration/proprietorship"
-                            className={megaMenuLinkClass}
-                          >
-                            Sole Proprietorship
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/registration/partnership"
-                            className={megaMenuLinkClass}
-                          >
-                            Partnership Firm
-                          </Link>
-                        </li>
-                      </ul>
+                {item.path ? (
+                  <Link
+                    to={item.path}
+                    className="flex items-center gap-1 relative group py-2"
+                  >
+                    {item.name}
+                    {item.subItems && (
+                      <ChevronDown
+                        size={16}
+                        className="group-hover:rotate-180 transition-transform duration-300"
+                      />
+                    )}
+                    <div
+                      className={`w-0 transition-all duration-300 group-hover:w-full absolute h-1 bg-[#052EAA] bottom-0 rounded-sm ${
+                        isActive ? "!w-full" : ""
+                      }`}
+                    ></div>
+                  </Link>
+                ) : (
+                  <div className="flex items-center gap-1 relative group py-2">
+                    {item.name}
+                    {item.subItems && (
+                      <ChevronDown
+                        size={16}
+                        className="group-hover:rotate-180 transition-transform duration-300"
+                      />
+                    )}
+                    <div
+                      className={`w-0 transition-all duration-300 group-hover:w-full absolute h-1 bg-[#052EAA] bottom-0 rounded-sm ${
+                        isServicesPage ? "!w-full" : ""
+                      }`}
+                    ></div>
+                  </div>
+                )}
+
+                {/* Mega Menu for Services */}
+                {item.subItems && item.name === "Service" && (
+                  <div
+                    className="
+                      absolute left-0 top-full mt-2 bg-white text-gray-800 rounded-xl shadow-2xl w-[97vw] mx-4
+                      opacity-0 invisible
+                      group-hover:opacity-100 group-hover:visible group-hover:-translate-y-1
+                      transform transition-all duration-300 z-40 overflow-hidden border border-gray-200
+                    "
+                    style={{ fontFamily: "Montserrat Alternates" }}
+                  >
+                    <div className="grid grid-cols-5 p-8 gap-8">
+                      {item.subItems.map((section) => (
+                        <div key={section.section} className="space-y-4">
+                          <h3 className="text-lg font-bold text-[#010574] border-b-2 border-[#010574] pb-2">
+                            {section.section}
+                          </h3>
+                          {section.items.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              to={subItem.path}
+                              className={`block text-sm font-medium ${
+                                location.pathname === subItem.path
+                                  ? "bg-[#e8f3ff] text-[#010574]"
+                                  : "bg-[#f2f7fe] hover:bg-[#e8f3ff] hover:text-[#010574]"
+                              } rounded-lg transition-all duration-300 transform hover:scale-105`}
+                            >
+                              <div className="py-3 px-4">
+                                <span className="block font-semibold">
+                                  {subItem.name}
+                                </span>
+                                <p className="text-xs text-gray-500 pt-1">
+                                  Learn more about our{" "}
+                                  {subItem.name.toLowerCase()}.
+                                </p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </div>
-              </div>
-            )}
-          </li>
-          <li>
-            <Link
-              to="/career"
-              className={`relative group py-2.5 ${navLinkClass(
-                currentPath === "/career"
-              )}`}
-            >
-              Career
-              <div
-                className={`absolute rounded-lg w-0 group-hover:w-full transition-all duration-300 group-hover:h-1 bottom-0 bg-[#010574] ${
-                  currentPath === "/career" && "!w-full !h-1"
-                }`}
-              ></div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/blog"
-              className={`relative group py-2.5 ${navLinkClass(
-                currentPath === "/blog"
-              )}`}
-            >
-              Blog
-              <div
-                className={`absolute rounded-lg w-0 group-hover:w-full transition-all duration-300 group-hover:h-1 bottom-0 bg-[#010574] ${
-                  currentPath === "/blog" && "!w-full !h-1"
-                }`}
-              ></div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className={`relative group py-2.5 ${navLinkClass(
-                currentPath === "/contact"
-              )}`}
-            >
-              Contact
-              <div
-                className={`absolute rounded-lg w-0 group-hover:w-full transition-all duration-300 group-hover:h-1 bottom-0 bg-[#010574] ${
-                  currentPath === "/contact" && "!w-full !h-1"
-                }`}
-              ></div>
-            </Link>
-          </li>
+                )}
+              </li>
+            );
+          })}
         </ul>
+
+        {/* Desktop Contact Section */}
         <div>
           <button
             className="custom-btn"
             style={{ fontFamily: "Montserrat Alternates" }}
+            onClick={handleOpenGetInTouchForm}
           >
-            Contact Us
+            Get In Touch
           </button>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const MobileNavbar = () => {
+  const dispatch=useDispatch()
+    const handleOpenGetInTouchForm = () => {
+    dispatch({ type: "open" });
+  };
+
+  const [isMobileViewOpen, setIsMobileViewOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [openSection, setOpenSection] = useState(null);
+  const location = useLocation();
+
+  const toggleMobileView = () => {
+    setIsMobileViewOpen(!isMobileViewOpen);
+    setIsMobileServicesOpen(false);
+    setOpenSection(null);
+  };
+
+  const toggleMobileServices = () => {
+    setIsMobileServicesOpen(!isMobileServicesOpen);
+    setOpenSection(null);
+  };
+
+  const toggleSection = (section: any) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileViewOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMobileViewOpen]);
+
+  return (
+    <div className="md:hidden relative bg-white">
+      {/* Mobile Toggle Button */}
+      <div className="container mx-auto py-3 flex px-4 h-20 items-center justify-between">
+        <img src={Logo} alt="Logo" className="h-12" />
+        <button
+          className="p-2 rounded-md border border-[#A4A4A4] hover:bg-[#f5f5f5] transition-colors duration-300"
+          onClick={toggleMobileView}
+        >
+          {isMobileViewOpen ? (
+            <X className="w-6 h-6 text-[#010574]" />
+          ) : (
+            <Menu className="w-6 h-6 text-[#010574]" />
+          )}
+        </button>
       </div>
 
-      {/* Mobile Navbar */}
-      <div className="md:hidden sticky top-0 z-50 bg-white shadow-lg">
-        <div className="flex items-center justify-between py-3 px-4">
-          <img src={Logo} className="h-12" alt="Logo" />
-          <button
-            className="p-2 rounded-md border border-[#A4A4A4] hover:bg-[#f5f5f5] transition-colors duration-300"
-            onClick={toggleNavbar}
-            aria-label="Toggle navigation menu"
+      {/* Mobile Menu */}
+      {isMobileViewOpen && (
+        <div className="absolute w-full max-h-[90vh] overflow-auto bg-white z-50 flex flex-col px-4 py-6 shadow-lg border-t border-gray-100">
+          {/* Navigation Links */}
+          <ul
+            className="flex flex-col space-y-2 text-base font-medium w-full"
+            style={{ fontFamily: "Montserrat Alternates" }}
           >
-            {isOpen ? (
-              <X className="w-6 h-6 text-[#010574]" />
-            ) : (
-              <Menu className="w-6 h-6 text-[#010574]" />
-            )}
-          </button>
-        </div>
-        {isOpen && (
-          <div className="bg-white px-4 py-6 space-y-2">
-            <ul
-              className="flex flex-col space-y-2"
-              style={{ fontFamily: "Montserrat Alternates", fontSize: "1rem" }}
-            >
-              <li>
-                <Link
-                  to="/"
-                  className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${navLinkClass(
-                    currentPath === "" || currentPath === "/"
-                  )}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${navLinkClass(
-                    currentPath === "/about"
-                  )}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={toggleService}
-                  className={`w-full text-left py-2 px-4 rounded-md hover:bg-[#f5f5f5] flex justify-between items-center ${navLinkClass(
-                    currentPath === "/services"
-                  )}`}
-                  aria-expanded={isServiceOpen}
-                >
-                  Service
-                  {isServiceOpen ? (
-                    <ChevronUp className="w-5 h-5 text-[#010574]" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-[#010574]" />
-                  )}
-                </button>
-                {isServiceOpen && (
-                  <div className="pl-4 pt-2 space-y-2">
-                    <button
-                      onClick={toggleCertification}
-                      className="w-full text-left py-2 px-4 rounded-md hover:bg-[#f5f5f5] flex justify-between items-center text-[#A4A4A4] hover:text-[#010574]"
-                      aria-expanded={isCertificationOpen}
+            {menuItems.map((item) => (
+              <li
+                key={item.name}
+                className="w-full border-b border-gray-100 py-2"
+              >
+                {item.subItems ? (
+                  <>
+                    <div
+                      onClick={toggleMobileServices}
+                      className="cursor-pointer flex items-center justify-between gap-2 hover:text-[#010574] transition w-full px-4 py-2 text-[#A4A4A4] hover:bg-[#f5f5f5] rounded-md"
                     >
-                      Certificate & Licence
-                      {isCertificationOpen ? (
-                        <ChevronUp className="w-5 h-5 text-[#010574]" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-[#010574]" />
-                      )}
-                    </button>
-                    {isCertificationOpen && (
-                      <ul className="pl-4 space-y-2">
-                        <li>
-                          <Link
-                            to="/certificate/fssai-license"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            FSSAI License
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/certificate/gst-registration"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            GST Registration
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/certificate/import-export"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            Import Export License
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/certificate/iso-certification"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            ISO Certification
-                          </Link>
-                        </li>
+                      {item.name}
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${
+                          isMobileServicesOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </div>
+                    {isMobileServicesOpen && item.name === "Service" && (
+                      <ul className="mt-2 space-y-2 text-sm w-full px-4">
+                        {item.subItems.map((section) => (
+                          <li key={section.section} className="space-y-2">
+                            <div
+                              onClick={() => toggleSection(section.section)}
+                              className="cursor-pointer flex items-center justify-between hover:text-[#010574] transition px-4 py-2 hover:bg-[#f5f5f5] rounded-md"
+                            >
+                              <h4 className="font-semibold text-[#6B7280]">
+                                {section.section}
+                              </h4>
+                              <ChevronDown
+                                size={16}
+                                className={`transition-transform ${
+                                  openSection === section.section
+                                    ? "rotate-180"
+                                    : ""
+                                }`}
+                              />
+                            </div>
+                            {openSection === section.section && (
+                              <ul className="space-y-1 pl-8 border-l-2 border-gray-200">
+                                {section.items.map((subItem) => (
+                                  <li key={subItem.name}>
+                                    <Link
+                                      to={subItem.path}
+                                      onClick={toggleMobileView}
+                                      className="block hover:text-[#010574] transition py-2 px-4 rounded-md hover:bg-[#f5f5f5] text-[#6B7280]"
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        ))}
                       </ul>
                     )}
-                    <button
-                      onClick={toggleLoan}
-                      className="w-full text-left py-2 px-4 rounded-md hover:bg-[#f5f5f5] flex justify-between items-center text-[#A4A4A4] hover:text-[#010574]"
-                      aria-expanded={isLoanOpen}
-                    >
-                      Loan
-                      {isLoanOpen ? (
-                        <ChevronUp className="w-5 h-5 text-[#010574]" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-[#010574]" />
-                      )}
-                    </button>
-                    {isLoanOpen && (
-                      <ul className="pl-4 space-y-2">
-                        <li>
-                          <Link
-                            to="/funding/business-loan"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            Business Loan
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
-                    <button
-                      onClick={toggleFunding}
-                      className="w-full text-left py-2 px-4 rounded-md hover:bg-[#f5f5f5] flex justify-between items-center text-[#A4A4A4] hover:text-[#010574]"
-                      aria-expanded={isFundingOpen}
-                    >
-                      Funding
-                      {isFundingOpen ? (
-                        <ChevronUp className="w-5 h-5 text-[#010574]" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-[#010574]" />
-                      )}
-                    </button>
-                    {isFundingOpen && (
-                      <ul className="pl-4 space-y-2">
-                        <li>
-                          <Link
-                            to="/funding/startup-funding"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            Startup Funding
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/funding/venture-capital"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            Venture Capital
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/funding/angel-investment"
-                            className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${megaMenuLinkClass}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            Angel Investment
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
-                  </div>
+                  </>
+                ) : (
+                  <Link
+                    to={item.path}
+                    onClick={toggleMobileView}
+                    className={`block transition px-4 py-2 rounded-md hover:bg-[#f5f5f5] ${
+                      location.pathname === item.path
+                        ? "text-[#052EAA] font-bold"
+                        : "text-[#A4A4A4] hover:text-[#010574]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
                 )}
               </li>
-              <li>
-                <Link
-                  to="/career"
-                  className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${navLinkClass(
-                    currentPath === "/career"
-                  )}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Career
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/blog"
-                  className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${navLinkClass(
-                    currentPath === "/blog"
-                  )}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className={`block py-2 px-4 rounded-md hover:bg-[#f5f5f5] ${navLinkClass(
-                    currentPath === "/contact"
-                  )}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="block py-2 px-4 bg-[#010574] text-white rounded-md hover:bg-[#1e1e7a] transition-colors duration-300 text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
-    </>
+            ))}
+            <li className="pt-4">
+              <Link
+                to="/contact"
+                className="block py-3 px-4 bg-[#010574] text-white rounded-md hover:bg-[#1e1e7a] transition-colors duration-300 text-center font-semibold"
+                onClick={()=>{toggleMobileView()
+                  handleOpenGetInTouchForm()
+                }}
+              >
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const Navbar = () => {
+  return (
+    <nav
+      className="sticky top-0 left-0 w-full z-50 bg-white shadow-xl"
+      style={{ fontFamily: "Montserrat Alternates" }}
+    >
+      <DesktopNavbar />
+      <MobileNavbar />
+    </nav>
   );
 };
 

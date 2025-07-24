@@ -9,56 +9,56 @@ const Blog = () => {
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "test",
     },
     {
       title: "Title1",
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "",
     },
     {
       title: "Title1",
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "",
     },
     {
       title: "Title1",
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "",
     },
     {
       title: "Title1",
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "",
     },
     {
       title: "Title1",
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "/",
     },
     {
       title: "Title1",
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "/",
     },
     {
       title: "Title1",
       description:
         "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       img: Image1,
-      slug: "/expandedBlog",
+      slug: "/",
     },
   ];
   const nav = useNavigate();
@@ -86,7 +86,7 @@ const Blog = () => {
         </section>
 
         {/* Blog Section */}
-        <section className="px-7 md:px-14 py-7 space-y-6">
+        <section className="px-7 md:px-14 py-7 space-y-6 bg-[#f7f7f7]">
           <h2
             style={{ fontFamily: "Anton" }}
             className="sub-heading  text-center bg-gradient-to-t from-[#3CA2E2] to-[#052EAA] bg-clip-text text-transparent"
@@ -109,7 +109,7 @@ const Blog = () => {
                   <button
                     className="custom-btn "
                     onClick={() => {
-                      nav(blog?.slug);
+                      nav(`/expandedBlog/${blog?.slug}`);
                     }}
                   >
                     Explore

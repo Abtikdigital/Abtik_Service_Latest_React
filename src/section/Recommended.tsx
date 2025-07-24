@@ -51,7 +51,7 @@ const Recommended = () => {
     },
   ];
   return (
-    <section className="bg-[#f7f7f7] px-7 md:px-14 space-y-6">
+    <section className="bg-[#f7f7f7] px-7 md:px-14 space-y-6 py-6">
       <h2
         className="sub-heading bg-clip-text text-center text-transparent bg-gradient-to-t from-[#3CA2E2] to-[#052EAA]"
         style={{ fontFamily: "Anton" }}

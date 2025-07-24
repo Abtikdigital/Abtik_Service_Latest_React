@@ -57,7 +57,7 @@ const NewBlog = () => {
     nav(path);
   };
   return (
-    <section className="bg-[#f7f7f7] py-7 px-14">
+    <section className="bg-[#f7f7f7] py-6 px-14">
       <div className="space-y-6">
         <h2
           style={{ fontFamily: "Anton" }}
