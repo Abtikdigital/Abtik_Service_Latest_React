@@ -17,7 +17,7 @@ const Contact = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    // reset,
   } = useForm<ContactFormData>();
 
   const data = [

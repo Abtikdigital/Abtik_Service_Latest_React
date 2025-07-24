@@ -8,8 +8,7 @@ import {
   Phone,
   BrainCircuit,
   Package,
-  ChevronDown,
-  ChevronUp,
+
   Headset,
   ArrowUpRight,
   ArrowRight,

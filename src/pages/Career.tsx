@@ -2,7 +2,7 @@ import Mainlayout from "../section/Mainlayout";
 import BgImage from "../assets/Career/bgImg.svg";
 import Image1 from "../assets/Career/male-female-graphic-designers-using-laptop.jpg";
 import Contact from "../section/Contact";
-import { MapPin, Clock, Users, Briefcase, ArrowRight } from "lucide-react";
+import { MapPin, Clock,  ArrowRight } from "lucide-react";
 
 const Career = () => {
   const jobOpenings = [
