@@ -3,6 +3,7 @@ import Logo from "../assets/Logo/Blue.png";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 const menuItems = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
@@ -74,9 +75,34 @@ const menuItems = [
 const DesktopNavbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const [hoverTimeout, setHoverTimeout] = useState<any>(null);
+  const [megaMenuVisible, setMegaMenuVisible] = useState(false);
+
   const handleOpenGetInTouchForm = () => {
     dispatch({ type: "open" });
   };
+
+  const handleMouseEnter = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+    }
+    setMegaMenuVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setMegaMenuVisible(false);
+    }, 300); // 300ms delay before closing
+    setHoverTimeout(timeout);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+    };
+  }, [hoverTimeout]);
 
   return (
     <div className="hidden md:block container mx-auto px-14 py-2.5">
@@ -112,6 +138,8 @@ const DesktopNavbar = () => {
                 } transition cursor-pointer text-[#A4A4A4] hover:text-[#052EAA] ${
                   isActive || isServicesPage ? "!text-[#052EAA] font-bold" : ""
                 }`}
+                onMouseEnter={item.name === "Service" ? handleMouseEnter : undefined}
+                onMouseLeave={item.name === "Service" ? handleMouseLeave : undefined}
               >
                 {item.path ? (
                   <Link
@@ -137,12 +165,14 @@ const DesktopNavbar = () => {
                     {item.subItems && (
                       <ChevronDown
                         size={16}
-                        className="group-hover:rotate-180 transition-transform duration-300"
+                        className={`transition-transform duration-300 ${
+                          megaMenuVisible && item.name === "Service" ? "rotate-180" : ""
+                        }`}
                       />
                     )}
                     <div
                       className={`w-0 transition-all duration-300 group-hover:w-full absolute h-1 bg-[#052EAA] bottom-0 rounded-sm ${
-                        isServicesPage ? "!w-full" : ""
+                        isServicesPage || (megaMenuVisible && item.name === "Service") ? "!w-full" : ""
                       }`}
                     ></div>
                   </div>
@@ -151,13 +181,18 @@ const DesktopNavbar = () => {
                 {/* Mega Menu for Services */}
                 {item.subItems && item.name === "Service" && (
                   <div
-                    className="
-                      absolute left-0 top-full mt-2 bg-white text-gray-800 rounded-xl shadow-2xl w-[97vw] mx-4
-                      opacity-0 invisible
-                      group-hover:opacity-100 group-hover:visible group-hover:-translate-y-1
+                    className={`
+                      absolute left-0 top-full mt-1.5 bg-white text-gray-800 rounded-xl shadow-2xl w-[97vw] mx-4
                       transform transition-all duration-300 z-40 overflow-hidden border border-gray-200
-                    "
+                      ${
+                        megaMenuVisible
+                          ? "opacity-100 visible -translate-y-1"
+                          : "opacity-0 invisible translate-y-0"
+                      }
+                    `}
                     style={{ fontFamily: "Montserrat Alternates" }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <div className="grid grid-cols-5 p-8 gap-8">
                       {item.subItems.map((section) => (
@@ -212,8 +247,8 @@ const DesktopNavbar = () => {
 };
 
 const MobileNavbar = () => {
-  const dispatch=useDispatch()
-    const handleOpenGetInTouchForm = () => {
+  const dispatch = useDispatch();
+  const handleOpenGetInTouchForm = () => {
     dispatch({ type: "open" });
   };
 
@@ -233,7 +268,7 @@ const MobileNavbar = () => {
     setOpenSection(null);
   };
 
-  const toggleSection = (section: any) => {
+  const toggleSection = (section:any) => {
     setOpenSection(openSection === section ? null : section);
   };
 
@@ -347,8 +382,9 @@ const MobileNavbar = () => {
               <Link
                 to="/contact"
                 className="block py-3 px-4 bg-[#010574] text-white rounded-md hover:bg-[#1e1e7a] transition-colors duration-300 text-center font-semibold"
-                onClick={()=>{toggleMobileView()
-                  handleOpenGetInTouchForm()
+                onClick={() => {
+                  toggleMobileView();
+                  handleOpenGetInTouchForm();
                 }}
               >
                 Contact Us
