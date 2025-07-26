@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Mainlayout from "../section/Mainlayout";
 import BgImage from "../assets/Career/bgImg.svg";
 import Image1 from "../assets/Career/male-female-graphic-designers-using-laptop.jpg";
@@ -18,7 +18,7 @@ import {
   Calendar,
   Building,
   DollarSign,
-  FileText,
+  
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
