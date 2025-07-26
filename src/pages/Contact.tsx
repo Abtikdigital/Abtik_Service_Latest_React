@@ -1,7 +1,12 @@
 import Mainlayout from "../section/Mainlayout";
 import BgImage from "../assets/Contact/bgImg.svg";
 import ContactSection from "../section/Contact";
+import { useDispatch } from "react-redux";
 const Contact = () => {
+  const dispatch=useDispatch()
+  const handleOpenDialog=()=>{
+    dispatch({type:"open"})
+  }
   return (
     <>
       <Mainlayout>
@@ -27,7 +32,9 @@ const Contact = () => {
               Management to Legal Compliance, We've Got You Covered at Abtik
               Startup Advisor Private Limited
             </p>
-            <button className="custom-btn">Schedule a call</button>
+            <button className="custom-btn"
+            onClick={handleOpenDialog}
+            >Schedule a call</button>
           </div>
         </section>
         {/* Contact Section */}

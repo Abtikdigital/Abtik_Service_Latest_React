@@ -13,8 +13,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const StartupIndia = () => {
+  const dispatch=useDispatch()
+  const handleOpenDialog=()=>{
+    dispatch({type:"open"})
+  }
   const [isExpanded, setIsExpanded] = useState({
     isOpen: false,
     index: -1,
@@ -75,6 +80,7 @@ const StartupIndia = () => {
           <button
             className="custom-btn transition-all duration-300  hover:shadow-lg"
             aria-label="Schedule a consultation call"
+            onClick={handleOpenDialog}
           >
             Schedule a call
           </button>

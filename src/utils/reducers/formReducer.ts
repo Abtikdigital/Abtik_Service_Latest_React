@@ -1,5 +1,5 @@
 let initialState = {
-  isContactFormOpen: true,
+  isContactFormOpen: false,
 };
 const formReducer = (state = initialState, action: any) => {
   switch (action.type) {

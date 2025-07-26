@@ -22,8 +22,13 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const Career = () => {
+  const dispatch=useDispatch()
+  const handleOpenDialog=()=>{
+    dispatch({type:"open"})
+  }
   const [isOpen, setIsOpen] = useState<any>(false);
   const [selectedJob, setSelectedJob] = useState<any>(null);
 
@@ -158,7 +163,9 @@ const Career = () => {
               Management to Legal Compliance, We've Got You Covered at Abtik
               Startup Advisor Private Limited
             </p>
-            <button className="custom-btn hover:scale-105 transform transition-transform duration-200">
+            <button className="custom-btn hover:scale-105 transform transition-transform duration-200"
+            onClick={handleOpenDialog}
+            >
               Schedule a call
             </button>
           </div>

@@ -2,7 +2,12 @@ import Mainlayout from "../section/Mainlayout";
 import BgImage from "../assets/Blog/bgImg.svg";
 import Image1 from "../assets/Blog/Image1.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const Blog = () => {
+  const dispatch=useDispatch()
+  const handleOpenDialog=()=>{
+    dispatch({type:"open"})
+  }
   const blogs = [
     {
       title: "Title1",
@@ -86,7 +91,9 @@ const Blog = () => {
               Management to Legal Compliance, We've Got You Covered at Abtik
               Startup Advisor Private Limited
             </p>
-            <button className="custom-btn">Schedule a call</button>
+            <button className="custom-btn"
+            onClick={handleOpenDialog}
+            >Schedule a call</button>
           </div>
         </section>
 

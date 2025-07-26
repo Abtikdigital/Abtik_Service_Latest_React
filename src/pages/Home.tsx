@@ -8,8 +8,13 @@ import NewBlog from "../section/NewBlog";
 import Testimonial from "../section/Testimonial";
 import Recommended from "../section/Recommended";
 import About from "../section/About";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const handleOpenDialog = () => {
+    dispatch({ type: "open" });
+  };
   return (
     <>
       <Mainlayout>
@@ -60,6 +65,7 @@ const Home = () => {
             </p>
             <div className="pt-2 sm:pt-4">
               <button
+              onClick={handleOpenDialog}
                 className="custom-btn 
                                text-sm sm:text-base md:text-lg
                                px-6 sm:px-8 md:px-10 lg:px-12

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Mainlayout from "../section/Mainlayout";
 import BgImage from "../assets/ExpandedBlog/bgImg.svg";
 import Image1 from "../assets/Blog/Image1.png";
+import { useDispatch } from "react-redux";
 
 interface BlogListItem {
   title: string;
@@ -22,6 +23,10 @@ interface BlogData {
 }
 
 const ExpandedBlog = () => {
+  const dispatch=useDispatch()
+  const handleOpenDialog=()=>{
+    dispatch({type:"open"})
+  }
   const blogsData: BlogData[] = [
     {
       title: "The Future of Digital Marketing: Trends and Strategies",
@@ -197,7 +202,9 @@ const ExpandedBlog = () => {
             Management to Legal Compliance, We&apos;ve Got You Covered at Abtik
             Startup Advisor Private Limited
           </p>
-          <button className="custom-btn hover:transform hover:-translate-y-1 transition-all duration-300">
+          <button className="custom-btn hover:transform hover:-translate-y-1 transition-all duration-300"
+          onClick={handleOpenDialog}
+          >
             Schedule a call
           </button>
         </div>

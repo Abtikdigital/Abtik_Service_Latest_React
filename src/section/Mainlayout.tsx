@@ -111,280 +111,272 @@ const Mainlayout = ({ children }: MainlayoutProps) => {
       {children}
       <Footer />
 
-      {isOpen && (
-        <motion.div
-          className="fixed inset-0 flex w-screen h-screen items-center justify-center bg-black/60 md:p-4"
-          style={{ zIndex: 9999999999 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.1, ease:"easeIn" }}
-        >
-          <motion.div
-            className="relative bg-white rounded-lg shadow-xl w-full max-w-4xl flex flex-col max-h-[100vh] md:max-h-[90vh]"
-            variants={formVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            {/* Header with Logo (Stays fixed at the top) */}
-            <div className="bg-gradient-to-r from-[#052EAA] to-[#3CA2E2] p-4 flex items-center justify-center w-full rounded-t-lg flex-shrink-0">
-              <img
-                src={Logo}
-                alt="Company Logo"
-                className="h-12 sm:h-14 w-auto"
-              />
-            </div>
+   {isOpen && (
+  <div
+    className="fixed inset-0 flex w-screen h-screen items-center justify-center bg-black/60 md:p-4"
+    style={{ zIndex: 9999999999 }}
+  >
+    <div
+      className="relative bg-white rounded-lg shadow-xl w-full max-w-4xl flex flex-col max-h-[100vh] md:max-h-[90vh]"
+    >
+      {/* Header with Logo */}
+      <div className="bg-gradient-to-r from-[#052EAA] to-[#3CA2E2] p-4 flex items-center justify-center w-full rounded-t-lg flex-shrink-0">
+        <img
+          src={Logo}
+          alt="Company Logo"
+          className="h-12 sm:h-14 w-auto"
+        />
+      </div>
 
-            {/* Close Button */}
-            <div className="absolute right-3 top-4 z-20">
-              <X
-                className="p-1 w-7 h-7 bg-white rounded-md cursor-pointer hover:ring-2 ring-gray-200 hover:bg-gray-100 shadow-sm transition-colors"
-                onClick={closeModal}
-              />
-            </div>
+      {/* Close Button */}
+      <div className="absolute right-3 top-4 z-20">
+        <X
+          className="p-1 w-7 h-7 bg-white rounded-md cursor-pointer hover:ring-2 ring-gray-200 hover:bg-gray-100 shadow-sm transition-colors"
+          onClick={closeModal}
+        />
+      </div>
 
-            {/* Main Content: This container will now manage the flexible, scrollable space */}
-            <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
-              {/* Left Side: Image */}
-              <div className="md:w-1/2 w-full p-4 bg-gray-50 flex items-center justify-center">
-                <img
-                  src={Image}
-                  alt="Contact Visual"
-                  className="object-cover rounded-xl w-full h-48 md:h-full max-h-[350px] md:max-h-[350px] md:max-w-[350px]"
-                />
-              </div>
+      {/* Main Content */}
+      <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
+        {/* Left Side: Image */}
+        <div className="md:w-1/2 w-full p-4 bg-gray-50 flex items-center justify-center">
+          <img
+            src={Image}
+            alt="Contact Visual"
+            className="object-cover rounded-xl w-full h-48 md:h-full max-h-[350px] md:max-h-[350px] md:max-w-[350px]"
+          />
+        </div>
 
-              {/* Right Side: This is now the scrollable container */}
-              <div className="md:w-1/2 w-full flex flex-col overflow-y-auto">
-                {/* Inner div for padding */}
-                <div className="p-4 md:p-6">
-                  <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col gap-5"
-                  >
-                    {/* Client Name */}
-                    <div className="flex flex-col gap-1">
-                      <label
-                        htmlFor="clientName"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Full Name <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <User
-                          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                          size={18}
-                        />
-                        <input
-                          {...register("clientName", {
-                            required: "* Name is required",
-                            minLength: {
-                              value: 2,
-                              message: "Name must be at least 2 characters",
-                            },
-                          })}
-                          id="clientName"
-                          type="text"
-                          placeholder="Enter your full name"
-                          className={`w-full pl-10 pr-4 py-2 border ${
-                            errors.clientName
-                              ? "border-red-500"
-                              : "border-gray-300"
-                          } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
-                        />
-                      </div>
-                      {errors.clientName && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.clientName.message}
-                        </p>
-                      )}
-                    </div>
+        {/* Right Side: Scrollable Container */}
+        <div className="md:w-1/2 w-full flex flex-col overflow-y-auto">
+          <div className="p-4 md:p-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-5"
+            >
 
-                    {/* Company Name */}
-                    <div className="flex flex-col gap-1">
-                      <label
-                        htmlFor="companyName"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Company Name <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <Building
-                          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                          size={18}
-                        />
-                        <input
-                          {...register("companyName", {
-                            required: "* Company name is required",
-                            minLength: {
-                              value: 2,
-                              message:
-                                "Company name must be at least 2 characters",
-                            },
-                          })}
-                          id="companyName"
-                          type="text"
-                          placeholder="Enter your company name"
-                          className={`w-full pl-10 pr-4 py-2 border ${
-                            errors.companyName
-                              ? "border-red-500"
-                              : "border-gray-300"
-                          } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
-                        />
-                      </div>
-                      {errors.companyName && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.companyName.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Email */}
-                    <div className="flex flex-col gap-1">
-                      <label
-                        htmlFor="email"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Email Address <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <Mail
-                          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                          size={18}
-                        />
-                        <input
-                          {...register("email", {
-                            required: "* Email is required",
-                            pattern: {
-                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                              message: "* Invalid email address",
-                            },
-                          })}
-                          id="email"
-                          type="email"
-                          placeholder="your.email@example.com"
-                          className={`w-full pl-10 pr-4 py-2 border ${
-                            errors.email ? "border-red-500" : "border-gray-300"
-                          } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
-                        />
-                      </div>
-                      {errors.email && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.email.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Phone */}
-                    <div className="flex flex-col gap-1">
-                      <label
-                        htmlFor="phone"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Contact Number <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <Phone
-                          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                          size={18}
-                        />
-                        <input
-                          {...register("phone", {
-                            required: "* Phone number is required",
-                            pattern: {
-                              value: /^[0-9]{10,15}$/,
-                              message: "* Phone number must be 10-15 digits",
-                            },
-                          })}
-                          id="phone"
-                          type="tel"
-                          placeholder="Enter your phone number"
-                          onKeyPress={(
-                            e: React.KeyboardEvent<HTMLInputElement>
-                          ) => {
-                            if (!/[0-9]/.test(e.key)) e.preventDefault();
-                          }}
-                          className={`w-full pl-10 pr-4 py-2 border ${
-                            errors.phone ? "border-red-500" : "border-gray-300"
-                          } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
-                        />
-                      </div>
-                      {errors.phone && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.phone.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Message */}
-                    <div className="flex flex-col gap-1">
-                      <label
-                        htmlFor="message"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Message <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <MessageSquare
-                          className="absolute left-3 top-3 text-gray-400"
-                          size={18}
-                        />
-                        <textarea
-                          {...register("message", {
-                            required: "* Message is required",
-                            minLength: {
-                              value: 10,
-                              message: "Message must be at least 10 characters",
-                            },
-                          })}
-                          id="message"
-                          placeholder="Enter your message"
-                          className={`w-full pl-10 pr-4 py-2 border ${
-                            errors.message
-                              ? "border-red-500"
-                              : "border-gray-300"
-                          } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent min-h-[100px] transition-all duration-200`}
-                        />
-                      </div>
-                      {errors.message && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.message.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Submit Buttons */}
-                    <div className="flex flex-col md:flex-row w-full gap-4 pt-4">
-                      <button
-                        type="button"
-                        onClick={closeModal}
-                        className="w-full md:w-1/2 h-11 md:h-10 cursor-pointer bg-gray-200 text-gray-800 font-medium rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center md:w-1/2 h-11 md:h-10 bg-gradient-to-r from-[#052EAA] to-[#3CA2E2] text-white font-semibold rounded-full cursor-pointer hover:from-[#041f7a] hover:to-[#2d8bc7] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#052EAA] transition-all duration-200"
-                      >
-                        {isSubmitting ? (
-                          <div className="flex items-center justify-center">
-                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                            Sending...
-                          </div>
-                        ) : (
-                          "Send Message"
-                        )}
-                      </button>
-                    </div>
-                  </form>
+              {/* Client Name */}
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="clientName"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <User
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    size={18}
+                  />
+                  <input
+                    {...register("clientName", {
+                      required: "* Name is required",
+                      minLength: {
+                        value: 2,
+                        message: "Name must be at least 2 characters",
+                      },
+                    })}
+                    id="clientName"
+                    type="text"
+                    placeholder="Enter your full name"
+                    className={`w-full pl-10 pr-4 py-2 border ${
+                      errors.clientName
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
+                  />
                 </div>
+                {errors.clientName && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.clientName.message}
+                  </p>
+                )}
               </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+
+              {/* Company Name */}
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="companyName"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Company Name <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <Building
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    size={18}
+                  />
+                  <input
+                    {...register("companyName", {
+                      required: "* Company name is required",
+                      minLength: {
+                        value: 2,
+                        message: "Company name must be at least 2 characters",
+                      },
+                    })}
+                    id="companyName"
+                    type="text"
+                    placeholder="Enter your company name"
+                    className={`w-full pl-10 pr-4 py-2 border ${
+                      errors.companyName
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
+                  />
+                </div>
+                {errors.companyName && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.companyName.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <Mail
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    size={18}
+                  />
+                  <input
+                    {...register("email", {
+                      required: "* Email is required",
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "* Invalid email address",
+                      },
+                    })}
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    className={`w-full pl-10 pr-4 py-2 border ${
+                      errors.email ? "border-red-500" : "border-gray-300"
+                    } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
+                  />
+                </div>
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Phone */}
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="phone"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Contact Number <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <Phone
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    size={18}
+                  />
+                  <input
+                    {...register("phone", {
+                      required: "* Phone number is required",
+                      pattern: {
+                        value: /^[0-9]{10,15}$/,
+                        message: "* Phone number must be 10-15 digits",
+                      },
+                    })}
+                    id="phone"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    onKeyPress={(
+                      e: React.KeyboardEvent<HTMLInputElement>
+                    ) => {
+                      if (!/[0-9]/.test(e.key)) e.preventDefault();
+                    }}
+                    className={`w-full pl-10 pr-4 py-2 border ${
+                      errors.phone ? "border-red-500" : "border-gray-300"
+                    } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent h-[38px] transition-all duration-200`}
+                  />
+                </div>
+                {errors.phone && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="message"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Message <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <MessageSquare
+                    className="absolute left-3 top-3 text-gray-400"
+                    size={18}
+                  />
+                  <textarea
+                    {...register("message", {
+                      required: "* Message is required",
+                      minLength: {
+                        value: 10,
+                        message: "Message must be at least 10 characters",
+                      },
+                    })}
+                    id="message"
+                    placeholder="Enter your message"
+                    className={`w-full pl-10 pr-4 py-2 border ${
+                      errors.message
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#052EAA] focus:border-transparent min-h-[100px] transition-all duration-200`}
+                  />
+                </div>
+                {errors.message && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit Buttons */}
+              <div className="flex flex-col md:flex-row w-full gap-4 pt-4">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="w-full md:w-1/2 h-11 md:h-10 cursor-pointer bg-gray-200 text-gray-800 font-medium rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center md:w-1/2 h-11 md:h-10 bg-gradient-to-r from-[#052EAA] to-[#3CA2E2] text-white font-semibold rounded-full cursor-pointer hover:from-[#041f7a] hover:to-[#2d8bc7] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#052EAA] transition-all duration-200"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                      Sending...
+                    </div>
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
     </>
   );
 };

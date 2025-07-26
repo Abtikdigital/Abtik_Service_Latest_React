@@ -9,7 +9,12 @@ import {
   faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { useDispatch } from "react-redux";
 const About = () => {
+  const dispatch=useDispatch()
+  const handleOpenDialog=()=>{
+    dispatch({type:"open"})
+  }
   const TeamData = [
     {
       img: Image1,
@@ -69,7 +74,9 @@ const About = () => {
               Management to Legal Compliance, We've Got You Covered at Abtik
               Startup Advisor Private Limited
             </p>
-            <button className="custom-btn">Schedule a call</button>
+            <button className="custom-btn"
+            onClick={handleOpenDialog}
+            >Schedule a call</button>
           </div>
         </section>
         {/* Client Stats */}
