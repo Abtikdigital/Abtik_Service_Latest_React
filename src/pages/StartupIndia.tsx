@@ -8,7 +8,6 @@ import {
   Phone,
   BrainCircuit,
   Package,
-
   Headset,
   ArrowUpRight,
   ArrowRight,
@@ -60,8 +59,13 @@ const StartupIndia = () => {
         style={{ backgroundImage: `url(${BgImage})` }}
       >
         <div className="md:w-1/2 space-y-6">
-          <h1 className="main-heading">
-            <span className="text-[#3CA2E2] font-extrabold">Startup</span> India
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+                          font-bold leading-tight sm:leading-tight md:leading-tight lg:leading-tight
+                          text-white lg:text-inherit tracking-wide
+                          main-heading"
+                          style={{fontFamily:"Anton"}}
+                          >
+            <span className="text-[#3CA2E2] font-extrabold block sm:inline" >Startup</span> India
           </h1>
           <p className="paragraph !text-white">
             Empowering Businesses through Comprehensive Solutions From Fund
@@ -69,7 +73,7 @@ const StartupIndia = () => {
             Startup Advisor Private Limited
           </p>
           <button
-            className="custom-btn transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            className="custom-btn transition-all duration-300  hover:shadow-lg"
             aria-label="Schedule a consultation call"
           >
             Schedule a call
@@ -81,7 +85,10 @@ const StartupIndia = () => {
       <section className="flex flex-col md:flex-row gap-8 bg-[#f7f7f7] py-16 px-7 md:px-14">
         {/* Left card */}
         <div className="w-full md:w-[300px] flex-shrink-0 bg-gradient-to-br from-blue-100 to-blue-200 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-          <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+          <h3
+            className="text-lg sm:text-xl font-semibold text-gray-800 mb-4"
+            style={{ fontFamily: "Montserrat Alternates" }}
+          >
             Get in Touch
           </h3>
           <div className="space-y-4">
@@ -94,7 +101,9 @@ const StartupIndia = () => {
                 <Phone className="w-5 h-5 text-white" />
               </span>
               <div>
-                <p className="text-sm text-gray-700">Call Anytime</p>
+                <p className="text-base text-gray-700 font-semibold">
+                  Call Anytime
+                </p>
                 <p className="text-xs text-gray-600">+91 98765 43210</p>
               </div>
             </a>
@@ -107,7 +116,9 @@ const StartupIndia = () => {
                 <Mail className="w-5 h-5 text-white" />
               </span>
               <div>
-                <p className="text-sm text-gray-700">Write Email</p>
+                <p className="text-base text-gray-700 font-semibold">
+                  Write Email
+                </p>
                 <p className="text-xs text-gray-600">info@abtik.com</p>
               </div>
             </a>
@@ -122,7 +133,9 @@ const StartupIndia = () => {
                 <MapPin className="w-5 h-5 text-white" />
               </span>
               <div>
-                <p className="text-sm text-gray-700">Visit Us Anytime</p>
+                <p className="text-base text-gray-700 font-semibold ">
+                  Visit Us Anytime
+                </p>
                 <p className="text-xs text-gray-600">
                   123 Business Hub,
                   <br />
@@ -171,7 +184,10 @@ const StartupIndia = () => {
             <div className="mb-4 inline-block p-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full">
               <BrainCircuit className="w-8 h-8" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+            <h3
+              className="text-lg font-semibold text-gray-800 mb-2"
+              style={{ fontFamily: "Montserrat Alternates" }}
+            >
               Expert Guidance
             </h3>
             <p className="text-sm text-gray-600">
@@ -184,7 +200,10 @@ const StartupIndia = () => {
             <div className="mb-4 inline-block p-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full">
               <Package className="w-8 h-8" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+            <h3
+              className="text-lg font-semibold text-gray-800 mb-2"
+              style={{ fontFamily: "Montserrat Alternates" }}
+            >
               All-in-One Solutions
             </h3>
             <p className="text-sm text-gray-600">
@@ -197,7 +216,10 @@ const StartupIndia = () => {
             <div className="mb-4 inline-block p-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full">
               <Headset className="w-8 h-8" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+            <h3
+              className="text-lg font-semibold text-gray-800 mb-2"
+              style={{ fontFamily: "Montserrat Alternates" }}
+            >
               Fast & Reliable Support
             </h3>
             <p className="text-sm text-gray-600">
@@ -209,33 +231,30 @@ const StartupIndia = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-[#f7f7f7] py-10 space-y-8">
-        <h1 className="sub-heading bg-gradient-to-t text-center bg-clip-text from-[#3CA2E2] to-[#052EAA] text-transparent">
+      <section className="bg-[#f7f7f7]  py-8 md:py-16 space-y-6">
+        <h1 className="sub-heading bg-gradient-to-t text-center  bg-clip-text from-[#3CA2E2] to-[#052EAA] text-transparent">
           Frequently Asked Questions
         </h1>
-        <div className="px-6 md:px-24 space-y-4">
+
+        <div
+          className="px-6  md:px-24 space-y-4 "
+          style={{ fontFamily: "Montserrat Alternates" }}
+        >
           {faq.map((data, index) => (
             <div
               key={index}
               className="bg-white rounded-lg shadow-sm border border-gray-100 transition-all duration-300"
             >
               <h2
-                onClick={() => toggleIsExpanded(index)}
-                className={`p-4 cursor-pointer flex items-center justify-between text-gray-800 font-medium ${
+                className={`p-2.5 px-4 relative cursor-pointer flex items-center justify-between  text-base font-medium ${
                   isExpanded.isOpen && isExpanded.index === index
                     ? "border-b border-gray-200"
                     : ""
                 }`}
+                onClick={() => toggleIsExpanded(index)}
               >
                 <span>{data.question}</span>
-                <button
-                  className="border-2 p-1 h-8 w-8 flex justify-center items-center border-[#052EAA] rounded-lg text-[#052EAA] transition-all duration-300 hover:bg-[#052EAA] hover:text-white"
-                  aria-label={
-                    isExpanded.isOpen && isExpanded.index === index
-                      ? `Collapse ${data.question}`
-                      : `Expand ${data.question}`
-                  }
-                >
+                <button className="border-2 p-1 transition-all duration-300 hover:scale-105 h-8 w-8 flex justify-center items-center border-[#052EAA] rounded-lg text-[#052EAA]">
                   {isExpanded.isOpen && isExpanded.index === index ? (
                     <ArrowRight className="w-5 h-5" />
                   ) : (
@@ -243,6 +262,7 @@ const StartupIndia = () => {
                   )}
                 </button>
               </h2>
+
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   isExpanded.isOpen && isExpanded.index === index

@@ -39,19 +39,21 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="bg-[#f7f7f7] py-16 space-y-6">
+    <section className="bg-[#f7f7f7]  py-8 md:py-16 space-y-6">
       <h1 className="sub-heading bg-gradient-to-t text-center  bg-clip-text from-[#3CA2E2] to-[#052EAA] text-transparent">
         Frequently Asked Questions
       </h1>
 
-      <div className="px-6 md:px-24 space-y-4">
+      <div className="px-6  md:px-24 space-y-4 "
+      style={{fontFamily:"Montserrat Alternates"}}
+      >
         {faq.map((data, index) => (
           <div
             key={index}
             className="bg-white rounded-lg shadow-sm border border-gray-100 transition-all duration-300"
           >
             <h2
-              className={`p-4 relative cursor-pointer flex items-center justify-between ${
+              className={`p-2.5 px-4 relative cursor-pointer flex items-center justify-between  text-base font-medium ${
                 isExpanded.isOpen && isExpanded.index === index
                   ? "border-b border-gray-200"
                   : ""

@@ -13,8 +13,13 @@ const Contact = () => {
           }}
         >
           <div className="md:w-1/2 space-y-6 ">
-            <h1 className="main-heading ">
-              <span className="text-[#3CA2E2] font-extrabold ">Contact</span>{" "}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+                          font-bold leading-tight sm:leading-tight md:leading-tight lg:leading-tight
+                          text-white lg:text-inherit tracking-wide
+                          main-heading"
+                          style={{fontFamily:"Anton"}}
+                          >
+              <span className="text-[#3CA2E2] font-extrabold block sm:inline ">Contact</span>{" "}
               Abtik
             </h1>
             <p className="paragraph !text-white">

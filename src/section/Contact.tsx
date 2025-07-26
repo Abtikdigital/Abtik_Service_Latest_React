@@ -116,9 +116,11 @@ const Contact = () => {
   };
 
   return (
-    <section className="px-7 md:px-14 py-6 bg-[#f7f7f7]">
+    <section className="px-7 md:px-14 py-6 md:py-16 bg-[#f7f7f7]"
+   
+    >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:grid-rows-1 space-x-6">
-        <div className="space-y-6 flex flex-col justify-center">
+        <div className="space-y-6  flex flex-col justify-center">
           <h2
             className="sub-heading to-[#052EAA] text-center bg-gradient-to-t from-[#3CA2E2] bg-clip-text text-transparent"
             style={{
@@ -137,10 +139,10 @@ const Contact = () => {
               <input
                 {...register("name", validationRules.name)}
                 placeholder="Enter Your Name"
-                className={`bg-[#ECEFF4] rounded-lg w-full p-2.5 focus:outline-2 transition-all duration-200 ${
+                className={`bg-[#ECEFF4] rounded-lg w-full p-2.5 focus:outline-2 transition-all duration-0  ${
                   errors.name
                     ? "outline-red-500 border-red-500"
-                    : "outline-[#2178B5] hover:outline-1"
+                    : "outline-[#2178B5] hover:outline-2"
                 }`}
                 disabled={isSubmitting}
               />
@@ -157,10 +159,10 @@ const Contact = () => {
                 {...register("email", validationRules.email)}
                 type="email"
                 placeholder="Enter Your Email"
-                className={`bg-[#ECEFF4] rounded-lg w-full p-2.5 focus:outline-2 transition-all duration-200 ${
+                className={`bg-[#ECEFF4] rounded-lg w-full p-2.5 focus:outline-2 transition-all duration-0 ${
                   errors.email
                     ? "outline-red-500 border-red-500"
-                    : "outline-[#2178B5] hover:outline-1"
+                    : "outline-[#2178B5] hover:outline-2"
                 }`}
                 disabled={isSubmitting}
               />
@@ -176,10 +178,10 @@ const Contact = () => {
               <textarea
                 {...register("message", validationRules.message)}
                 placeholder="Enter Your Message"
-                className={`bg-[#ECEFF4] rounded-lg w-full p-2.5 overflow-auto h-24 max-h-32 resize-none transition-all duration-200 ${
+                className={`bg-[#ECEFF4] rounded-lg w-full p-2.5 overflow-auto h-24 max-h-32 resize-none transition-all duration-0 ${
                   errors.message
                     ? "outline-red-500 border-red-500"
-                    : "outline-[#2178B5] hover:outline-1"
+                    : "outline-[#2178B5] hover:outline-2"
                 }`}
                 disabled={isSubmitting}
               />
@@ -195,11 +197,12 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`custom-btn w-full text-center !py-3 transition-all duration-200 ${
+                className={`custom-btn w-full text-center !py-3 transition-all duration-200  ${
                   isSubmitting
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:transform hover:scale-105"
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:transform hover:scale-105"
                 }`}
+                  style={{ fontFamily: "" }}
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center gap-2">
@@ -215,7 +218,7 @@ const Contact = () => {
         </div>
 
         {/* Chart Section */}
-        <div className="md:col-span-3 bg-gradient-to-r from-[#3CA2E2] to-[#052EAA] rounded-lg grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1">
+        <div className="lg:col-span-3 bg-gradient-to-r from-[#3CA2E2] to-[#052EAA] rounded-lg grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1">
           <div className="relative">
             <Map/>
           </div>
@@ -230,7 +233,9 @@ const Contact = () => {
               />
               <div className="flex justify-center items-center">
                 <div className="bg-white rounded-xl shadow-lg">
-                  <ul className="space-y-3 p-3">
+                  <ul className="space-y-3 p-3"
+                 
+                  >
                     <li className="grid grid-cols-[auto_1.5rem] items-center gap-2 cursor-pointer">
                       <h2 className="paragraph">MSME</h2>
                       <div className="bg-[#3CA2E2] h-6 w-6 rounded-md"></div>

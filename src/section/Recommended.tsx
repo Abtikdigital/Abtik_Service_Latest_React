@@ -1,4 +1,5 @@
 import Image1 from "../assets/Recommended/Img1.svg";
+
 const Recommended = () => {
   const recommendedData = [
     {
@@ -51,7 +52,7 @@ const Recommended = () => {
     },
   ];
   return (
-    <section className="bg-[#f7f7f7] px-7 md:px-14 space-y-6 py-6">
+    <section className="bg-[#f7f7f7] px-5 sm:px-7 md:px-12 lg:px-14 space-y-6 py-8 md:py-16">
       <h2
         className="sub-heading bg-clip-text text-center text-transparent bg-gradient-to-t from-[#3CA2E2] to-[#052EAA]"
         style={{ fontFamily: "Anton" }}
@@ -61,14 +62,21 @@ const Recommended = () => {
       <p className="paragraph text-center">
         Top-picked services for your business goals—get exactly what you need, when you need it.
       </p>
-      <div className=" gap-6 grid grid-cols-1 md:grid-cols-4">
-        {recommendedData?.map((data) => (
-          <div className="bg-white p-4 shadow-lg rounded-4xl space-y-3 duration-300  transition-all hover:scale-105 cursor-pointer">
-            <img src={data?.img} />
-            <h2 className="text-xl text-[#3CA2E2] font-semibold text-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-6"
+      
+      >
+        {recommendedData?.map((data, index) => (
+          <div
+            key={index}
+            className="bg-white p-4 shadow-lg rounded-4xl space-y-3 duration-300 transition-all hover:scale-105 cursor-pointer"
+          >
+            <img src={data?.img} className="w-full" />
+            <h2 className="text-xl text-[#3CA2E2] font-semibold text-center"
+             style={{ fontFamily: "Montserrat Alternates" }}
+            >
               {data?.title}
             </h2>
-            <p className="paragraph  text-center">{data?.description}</p>
+            <p className="paragraph text-center">{data?.description}</p>
           </div>
         ))}
       </div>

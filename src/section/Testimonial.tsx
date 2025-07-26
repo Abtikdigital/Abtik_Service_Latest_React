@@ -87,7 +87,7 @@ const Testimonial: React.FC = () => {
   const nextIdx = getIndex(1);
 
   return (
-    <section className="flex flex-col items-center py-6 space-y-6 bg-[#f7f7f7] min-h-[400px] w-full overflow-hidden">
+    <section className="flex flex-col items-center py-6 space-y-8 md:space-y-16 bg-[#f7f7f7] min-h-[400px] w-full overflow-hidden">
       <h2
         className="sub-heading bg-clip-text text-transparent bg-gradient-to-t from-[#3CA2E2] to-[#052EAA] px-4"
         style={{ fontFamily: "Anton" }}
@@ -176,7 +176,7 @@ const Card: React.FC<CardProps> = ({ testimonial, position, windowWidth }) => {
 
   return (
     <div
-      className={`${baseStyles} ${styles} `}
+      className={`${baseStyles} ${styles}  `}
       style={{ 
         
         zIndex, 
@@ -185,12 +185,16 @@ const Card: React.FC<CardProps> = ({ testimonial, position, windowWidth }) => {
         marginLeft: windowWidth < 640 ? '-42.5vw' : windowWidth < 768 ? '-160px' : '-225px'
       }}
     >
-      <div className="flex items-center space-x-3 sm:space-x-4 mb-3 sm:mb-4 md:mb-6">
-        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gray-300 flex justify-center items-center text-gray-800 font-semibold text-xs sm:text-sm md:text-base flex-shrink-0">
+      <div className="flex items-center space-x-3 sm:space-x-4 mb-3 sm:mb-4 md:mb-6 ">
+        <div
+         style={{ fontFamily: "Montserrat Alternates" }}
+        className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full  bg-gray-300 flex justify-center items-center text-gray-800 font-semibold text-xs sm:text-sm md:text-base flex-shrink-0">
           {getInitials(testimonial.name)}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="font-semibold text-sm sm:text-base md:text-lg capitalize truncate">
+          <p className="font-semibold text-sm sm:text-base md:text-lg capitalize truncate"
+           style={{ fontFamily: "Montserrat Alternates" }}
+          >
             {testimonial.name}
           </p>
           {testimonial.company && (

@@ -73,8 +73,13 @@ const Blog = () => {
           }}
         >
           <div className="md:w-1/2 space-y-6 ">
-            <h1 className="main-heading ">
-              <span className="text-[#3CA2E2] font-extrabold ">Blog</span> Abtik
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+                          font-bold leading-tight sm:leading-tight md:leading-tight lg:leading-tight
+                          text-white lg:text-inherit tracking-wide
+                          main-heading "
+                          style={{fontFamily:"Anton"}}
+                          >
+              <span className="text-[#3CA2E2] font-extrabold block sm:inline">Blog</span> Abtik
             </h1>
             <p className="paragraph !text-white">
               Empowering Businesses through Comprehensive Solutions From Fund
@@ -101,7 +106,9 @@ const Blog = () => {
             {blogs?.map((blog) => (
               <div className="space-y-3">
                 <img src={blog?.img} />
-                <h2 className=" text-xl text-[#3CA2E2] font-semibold">
+                <h2 className=" text-xl text-[#3CA2E2] font-semibold"
+                style={{fontFamily:"Montserrat Alternates"}}
+                >
                   {blog?.title}
                 </h2>
                 <p className=" paragraph">{blog?.description}</p>

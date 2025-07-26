@@ -92,7 +92,7 @@ const DesktopNavbar = () => {
   const handleMouseLeave = () => {
     const timeout = setTimeout(() => {
       setMegaMenuVisible(false);
-    }, 300); // 300ms delay before closing
+    }, 250);
     setHoverTimeout(timeout);
   };
 
@@ -105,16 +105,16 @@ const DesktopNavbar = () => {
   }, [hoverTimeout]);
 
   return (
-    <div className="hidden md:block container mx-auto px-14 py-2.5">
+    <div className="hidden xl:block container mx-auto px-4 lg:px-8 xl:px-14 py-2">
       <div className="flex items-center justify-between">
         {/* Logo */}
-        <div>
-          <img src={Logo} alt="Logo" className="h-14" />
+        <div className="flex-shrink-0">
+          <img src={Logo} alt="Logo" className="h-12 lg:h-14" />
         </div>
 
         {/* Desktop Menu */}
         <ul
-          className="flex gap-8 font-medium items-center"
+          className="flex gap-4 lg:gap-6 xl:gap-8 font-medium items-center text-sm lg:text-base"
           style={{ fontFamily: "Montserrat Alternates" }}
         >
           {menuItems.map((item) => {
@@ -154,7 +154,7 @@ const DesktopNavbar = () => {
                       />
                     )}
                     <div
-                      className={`w-0 transition-all duration-300 group-hover:w-full absolute h-1 bg-[#052EAA] bottom-0 rounded-sm ${
+                      className={`w-0 transition-all duration-300 group-hover:w-full absolute h-1 bg-[#052EAA] bottom-0 rounded-2xl ${
                         isActive ? "!w-full" : ""
                       }`}
                     ></div>
@@ -182,8 +182,9 @@ const DesktopNavbar = () => {
                 {item.subItems && item.name === "Service" && (
                   <div
                     className={`
-                      absolute left-0 top-full mt-1.5 bg-white text-gray-800 rounded-xl shadow-2xl w-[97vw] mx-4
-                      transform transition-all duration-300 z-40 overflow-hidden border border-gray-200
+                      absolute left-0 top-full mt-1.5 bg-white text-gray-800 rounded-xl shadow-2xl
+                      w-[95vw] lg:w-[97vw] mx-2 lg:mx-4 max-h-[80vh] overflow-y-auto
+                      transform transition-all duration-300 z-40 overflow-hidden border border-gray-300
                       ${
                         megaMenuVisible
                           ? "opacity-100 visible -translate-y-1"
@@ -194,28 +195,28 @@ const DesktopNavbar = () => {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="grid grid-cols-5 p-8 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 p-4 lg:p-6 xl:p-8 gap-4 lg:gap-6 xl:gap-8">
                       {item.subItems.map((section) => (
-                        <div key={section.section} className="space-y-4">
-                          <h3 className="text-lg font-bold text-[#010574] border-b-2 border-[#010574] pb-2">
+                        <div key={section.section} className="space-y-3 lg:space-y-4">
+                          <h3 className="text-base lg:text-lg font-semibold text-[#010574] border-b-2 border-[#010574] pb-2">
                             {section.section}
                           </h3>
                           {section.items.map((subItem) => (
                             <Link
                               key={subItem.name}
                               to={subItem.path}
-                              className={`block text-sm font-medium ${
+                              className={`block text-xs lg:text-sm font-normal ${
                                 location.pathname === subItem.path
                                   ? "bg-[#e8f3ff] text-[#010574]"
-                                  : "bg-[#f2f7fe] hover:bg-[#e8f3ff] hover:text-[#010574]"
+                                  : "bg-gray-100 hover:bg-[#e0f0ff] hover:text-[#010574] text-gray-800"
                               } rounded-lg transition-all duration-300 transform hover:scale-105`}
                             >
-                              <div className="py-3 px-4">
-                                <span className="block font-semibold">
+                              <div className="py-2 lg:py-3 px-3 lg:px-4">
+                                <span className={`block ${location.pathname===subItem.path?"font-semibold text-[#010574]":"font-medium text-gray-900"}`}>
                                   {subItem.name}
                                 </span>
-                                <p className="text-xs text-gray-500 pt-1">
-                                  Learn more about our{" "}
+                                <p className="text-xs text-gray-600 pt-1 hidden lg:block">
+                                  Learn more about our {" "}<br/>
                                   {subItem.name.toLowerCase()}.
                                 </p>
                               </div>
@@ -232,10 +233,10 @@ const DesktopNavbar = () => {
         </ul>
 
         {/* Desktop Contact Section */}
-        <div>
+        <div className="flex-shrink-0">
           <button
-            className="custom-btn"
-            style={{ fontFamily: "Montserrat Alternates" }}
+            className="custom-btn text-sm lg:text-base px-4 lg:px-6 py-2 "
+           
             onClick={handleOpenGetInTouchForm}
           >
             Get In Touch
@@ -268,7 +269,7 @@ const MobileNavbar = () => {
     setOpenSection(null);
   };
 
-  const toggleSection = (section:any) => {
+  const toggleSection = (section: any) => {
     setOpenSection(openSection === section ? null : section);
   };
 
@@ -280,28 +281,28 @@ const MobileNavbar = () => {
   }, [isMobileViewOpen]);
 
   return (
-    <div className="md:hidden relative bg-white">
+    <div className="xl:hidden relative bg-white">
       {/* Mobile Toggle Button */}
-      <div className="container mx-auto py-3 flex px-4 h-20 items-center justify-between">
-        <img src={Logo} alt="Logo" className="h-12" />
+      <div className="container mx-auto py-3 flex px-4 h-16 lg:h-20 items-center justify-between">
+        <img src={Logo} alt="Logo" className="h-10 lg:h-12" />
         <button
           className="p-2 rounded-md border border-[#A4A4A4] hover:bg-[#f5f5f5] transition-colors duration-300"
           onClick={toggleMobileView}
         >
           {isMobileViewOpen ? (
-            <X className="w-6 h-6 text-[#010574]" />
+            <X className="w-5 h-5 lg:w-6 lg:h-6 text-[#010574]" />
           ) : (
-            <Menu className="w-6 h-6 text-[#010574]" />
+            <Menu className="w-5 h-5 lg:w-6 lg:h-6 text-[#010574]" />
           )}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileViewOpen && (
-        <div className="absolute w-full max-h-[90vh] overflow-auto bg-white z-50 flex flex-col px-4 py-6 shadow-lg border-t border-gray-100">
+        <div className="absolute w-full max-h-[85vh] lg:max-h-[80vh] overflow-auto bg-white z-50 flex flex-col px-4 py-4 lg:py-6 shadow-lg border-t border-gray-100">
           {/* Navigation Links */}
           <ul
-            className="flex flex-col space-y-2 text-base font-medium w-full"
+            className="flex flex-col space-y-2 text-sm lg:text-base font-medium w-full"
             style={{ fontFamily: "Montserrat Alternates" }}
           >
             {menuItems.map((item) => (
@@ -313,7 +314,7 @@ const MobileNavbar = () => {
                   <>
                     <div
                       onClick={toggleMobileServices}
-                      className="cursor-pointer flex items-center justify-between gap-2 hover:text-[#010574] transition w-full px-4 py-2 text-[#A4A4A4] hover:bg-[#f5f5f5] rounded-md"
+                      className="cursor-pointer flex items-center justify-between gap-2 hover:text-[#010574] transition w-full px-3 lg:px-4 py-2 lg:py-3 text-[#A4A4A4] hover:bg-[#f5f5f5] rounded-md"
                     >
                       {item.name}
                       <ChevronDown
@@ -324,18 +325,18 @@ const MobileNavbar = () => {
                       />
                     </div>
                     {isMobileServicesOpen && item.name === "Service" && (
-                      <ul className="mt-2 space-y-2 text-sm w-full px-4">
+                      <ul className="mt-2 space-y-2 text-xs lg:text-sm w-full px-2 lg:px-4">
                         {item.subItems.map((section) => (
                           <li key={section.section} className="space-y-2">
                             <div
                               onClick={() => toggleSection(section.section)}
-                              className="cursor-pointer flex items-center justify-between hover:text-[#010574] transition px-4 py-2 hover:bg-[#f5f5f5] rounded-md"
+                              className="cursor-pointer flex items-center justify-between hover:text-[#010574] transition px-3 lg:px-4 py-2 hover:bg-[#f5f5f5] rounded-md"
                             >
                               <h4 className="font-semibold text-[#6B7280]">
                                 {section.section}
                               </h4>
                               <ChevronDown
-                                size={16}
+                                size={14}
                                 className={`transition-transform ${
                                   openSection === section.section
                                     ? "rotate-180"
@@ -344,13 +345,13 @@ const MobileNavbar = () => {
                               />
                             </div>
                             {openSection === section.section && (
-                              <ul className="space-y-1 pl-8 border-l-2 border-gray-200">
+                              <ul className="space-y-1 pl-4 lg:pl-8 border-l-2 border-gray-200">
                                 {section.items.map((subItem) => (
                                   <li key={subItem.name}>
                                     <Link
                                       to={subItem.path}
                                       onClick={toggleMobileView}
-                                      className="block hover:text-[#010574] transition py-2 px-4 rounded-md hover:bg-[#f5f5f5] text-[#6B7280]"
+                                      className="block hover:text-[#010574] transition py-2 px-3 lg:px-4 rounded-md hover:bg-[#f5f5f5] text-[#6B7280]"
                                     >
                                       {subItem.name}
                                     </Link>
@@ -367,7 +368,7 @@ const MobileNavbar = () => {
                   <Link
                     to={item.path}
                     onClick={toggleMobileView}
-                    className={`block transition px-4 py-2 rounded-md hover:bg-[#f5f5f5] ${
+                    className={`block transition px-3 lg:px-4 py-2 lg:py-3 rounded-md hover:bg-[#f5f5f5] ${
                       location.pathname === item.path
                         ? "text-[#052EAA] font-bold"
                         : "text-[#A4A4A4] hover:text-[#010574]"
@@ -381,7 +382,7 @@ const MobileNavbar = () => {
             <li className="pt-4">
               <Link
                 to="/contact"
-                className="block py-3 px-4 bg-[#010574] text-white rounded-md hover:bg-[#1e1e7a] transition-colors duration-300 text-center font-semibold"
+                className="block py-3 lg:py-4 px-4 bg-[#010574] text-white rounded-md hover:bg-[#1e1e7a] transition-colors duration-300 text-center font-semibold text-sm lg:text-base"
                 onClick={() => {
                   toggleMobileView();
                   handleOpenGetInTouchForm();

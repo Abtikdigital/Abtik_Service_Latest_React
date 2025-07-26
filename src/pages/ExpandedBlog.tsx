@@ -182,8 +182,15 @@ const ExpandedBlog = () => {
       >
         <div className="absolute inset-0 bg-opacity-30"></div>
         <div className="md:w-1/2 space-y-6 relative z-10">
-          <h1 className="main-heading">
-            <span className="text-[#3CA2E2] font-extrabold">Blog</span> Abtik
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+                          font-bold leading-tight sm:leading-tight md:leading-tight lg:leading-tight
+                          text-white lg:text-inherit tracking-wide
+                          main-heading"
+                          style={{
+                            fontFamily:"Anton"
+                          }}
+                          >
+            <span className="text-[#3CA2E2] font-extrabold block sm:inline">Blog</span> Abtik
           </h1>
           <p className="paragraph !text-white">
             Empowering Businesses through Comprehensive Solutions From Fund
@@ -362,7 +369,7 @@ const ExpandedBlog = () => {
                 <div className="text-center space-y-3 md:space-y-4">
                   <div className="w-12 h-12 md:w-16 md:h-16 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                     <svg
-                      className="w-6 h-6 md:w-8 md:h-8 text-white"
+                      className="w-6 h-6 md:w-8 md:h-8 text-[#2691D9]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -382,7 +389,7 @@ const ExpandedBlog = () => {
                     Schedule a consultation with our experts today and transform
                     your business.
                   </p>
-                  <button className="w-full bg-white text-[#3CA2E2] font-semibold py-2 md:py-3 px-3 md:px-4 rounded-lg hover:bg-gray-100 hover:transform hover:-translate-y-1 transition-all duration-300 shadow-lg text-sm md:text-base">
+                  <button className="custom-btn ">
                     Schedule a Call
                   </button>
                 </div>
